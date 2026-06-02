@@ -662,6 +662,213 @@
   }
   .learn-link:hover { background: var(--bch-green); color: var(--bch-darker); }
 
+  /* ─── FEATURED PROJECT ─── */
+  .featured-wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto 0.5rem;
+    padding: 0 2rem;
+  }
+  .featured-label {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.75rem;
+  }
+  .featured-label-text {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--bch-warn);
+    font-weight: 700;
+  }
+  .featured-label-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, #ffb93040, transparent);
+  }
+  .featured-timer {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--bch-warn);
+    background: #ffb93015;
+    border: 1px solid #ffb93050;
+    padding: 0.2rem 0.65rem;
+    border-radius: 100px;
+    letter-spacing: 0.05em;
+  }
+  .featured-card {
+    background: linear-gradient(135deg, #0e1f16 0%, #0a1a12 60%, #0d1f18 100%);
+    border: 1px solid #ffb93060;
+    border-radius: 20px;
+    padding: 2rem 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .featured-card:hover {
+    border-color: var(--bch-warn);
+    box-shadow: 0 0 48px #ffb93020;
+  }
+  .featured-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--bch-warn), var(--bch-green), transparent);
+  }
+  .featured-glow {
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, #ffb93015 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .featured-left { position: relative; z-index: 1; }
+  .featured-badges {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.85rem;
+    flex-wrap: wrap;
+  }
+  .featured-badge-star {
+    background: linear-gradient(135deg, #ffb930, #ff8c00);
+    color: #000;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.75rem;
+    border-radius: 100px;
+  }
+  .featured-badge-cat {
+    background: var(--bch-green-dim);
+    border: 1px solid var(--bch-green);
+    color: var(--bch-green);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.75rem;
+    border-radius: 100px;
+  }
+  .featured-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+    line-height: 1.1;
+  }
+  .featured-title span { color: var(--bch-green); }
+  .featured-tagline {
+    font-size: 1rem;
+    color: var(--bch-muted);
+    margin-bottom: 1.2rem;
+    line-height: 1.6;
+    max-width: 580px;
+  }
+  .featured-tagline strong { color: var(--bch-text); }
+  .featured-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1.5rem;
+  }
+  .featured-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .featured-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, var(--bch-green), #07856a);
+    color: var(--bch-darker);
+    font-size: 0.9rem;
+    font-weight: 800;
+    padding: 0.7rem 1.6rem;
+    border-radius: 10px;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: all 0.2s;
+    box-shadow: 0 4px 20px #0ac18e30;
+  }
+  .featured-cta:hover {
+    background: linear-gradient(135deg, var(--bch-accent), var(--bch-green));
+    transform: translateY(-1px);
+    box-shadow: 0 6px 28px #0ac18e50;
+  }
+  .featured-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: transparent;
+    border: 1px solid #ffb93060;
+    color: var(--bch-warn);
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.7rem 1.2rem;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .featured-secondary:hover {
+    border-color: var(--bch-warn);
+    background: #ffb93010;
+  }
+  .featured-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+  .featured-logo-ring {
+    width: 110px;
+    height: 110px;
+    border-radius: 24px;
+    background: linear-gradient(135deg, #0d2b1a, #060a08);
+    border: 2px solid #ffb93060;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.2rem;
+    box-shadow: 0 0 32px #ffb93025;
+    transition: border-color 0.3s;
+  }
+  .featured-card:hover .featured-logo-ring { border-color: var(--bch-warn); }
+  .featured-sponsor-note {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--bch-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    text-align: center;
+    opacity: 0.6;
+  }
+  @media (max-width: 768px) {
+    .featured-card {
+      grid-template-columns: 1fr;
+      padding: 1.5rem;
+    }
+    .featured-right { flex-direction: row; justify-content: flex-start; }
+    .featured-title { font-size: 1.5rem; }
+  }
+
   /* ─── FOOTER ─── */
   footer {
     position: relative;
@@ -742,6 +949,55 @@
     </div>
   </div>
 </div>
+
+<!-- FEATURED PROJECT OF THE WEEK -->
+<div class="featured-wrap">
+  <div class="featured-label">
+    <span class="featured-label-text">⭐ Featured Project of the Week</span>
+    <div class="featured-label-line"></div>
+    <span class="featured-timer" id="featured-countdown">Loading...</span>
+  </div>
+  <div class="featured-card">
+    <div class="featured-glow"></div>
+    <div class="featured-left">
+      <div class="featured-badges">
+        <span class="featured-badge-star">⭐ This Week's Pick</span>
+        <span class="featured-badge-cat">🟣 Social · Nostr</span>
+        <span class="badge badge-new">Decentralized</span>
+      </div>
+      <div class="featured-title">BCH<span>nostr</span></div>
+      <div class="featured-tagline">
+        <strong>Bitcoin Cash meets Nostr</strong> — the censorship-resistant, decentralized social protocol.
+        BCHnostr bridges the BCH community into the open Nostr network where no platform can ban you,
+        delete your posts, or freeze your account. Send and receive <strong>BCH tips natively</strong>,
+        own your identity with your private key, and connect with thousands of BCH users worldwide —
+        all without a single point of failure.
+      </div>
+      <div class="featured-tags">
+        <span class="tag green">Nostr Protocol</span>
+        <span class="tag green">BCH Tipping</span>
+        <span class="tag green">Censorship Resistant</span>
+        <span class="tag">Self-Sovereign Identity</span>
+        <span class="tag">Open Source</span>
+        <span class="tag">No KYC</span>
+      </div>
+      <div class="featured-actions">
+        <a class="featured-cta" href="https://bchnostr.com/?ref=07b2bfa4403e6ae25a1a91906a5d007620cbdd9b7868373125117529e6bb8164" target="_blank" rel="noopener">
+          🟣 Explore BCHnostr ↗
+        </a>
+        <a class="featured-secondary" href="#donate" onclick="document.getElementById('donate').scrollIntoView({behavior:'smooth'});return false;">
+          💚 Tip CashCompass in BCH
+        </a>
+      </div>
+    </div>
+    <div class="featured-right">
+      <div class="featured-logo-ring">🟣</div>
+      <div class="featured-sponsor-note">Featured · Week 1</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
 
 <!-- LEARN / START HERE BOX -->
 <div class="section" id="learn">
@@ -1702,8 +1958,8 @@
     <h2>💚 Support This Hub</h2>
     <p>This resource is maintained entirely by the community. If CashCompass has helped you navigate the ecosystem, consider sending a small donation to help cover hosting, updates, and continued curation. Every satoshi counts!</p>
 
-    <div class="donation-addr" onclick="copyAddr()" title="Click to copy">
-      <span id="donation-addr-text">bitcoincash:qrtv37u522gz8a5lezfqk5vukly93cu7gc8tn09040</span>
+    <div class="donation-addr" onclick="copyAddr()" title="Click to copy · Opens wallet on mobile">
+      <a href="bitcoincash:qrtv37u522gz8a5lezfqk5vukly93cu7gc8tn09040" style="color:inherit;text-decoration:none;flex:1;" id="donation-addr-text">bitcoincash:qrtv37u522gz8a5lezfqk5vukly93cu7gc8tn09040</a>
       <span class="copy-icon">📋</span>
     </div>
     <div class="copied-toast" id="copied-toast">✔ Address copied to clipboard!</div>
@@ -1990,6 +2246,27 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Enter' && document.activeElement.id === 'conv-input') convertAddress();
   if (e.key === 'Enter' && (document.activeElement.id === 'qr-input' || document.activeElement.id === 'qr-amount')) generateQR();
 });
+
+// ─── FEATURED COUNTDOWN TIMER ───
+function updateFeaturedCountdown() {
+  const el = document.getElementById('featured-countdown');
+  if (!el) return;
+  // Feature runs for 7 days from June 2, 2026
+  const endDate = new Date('2026-06-09T23:59:59Z');
+  const now = new Date();
+  const diff = endDate - now;
+  if (diff <= 0) {
+    el.textContent = 'Featuring ended';
+    return;
+  }
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  const secs = Math.floor((diff % (1000 * 60)) / 1000);
+  el.textContent = `⏳ ${days}d ${hours}h ${mins}m ${secs}s left`;
+}
+updateFeaturedCountdown();
+setInterval(updateFeaturedCountdown, 1000);
 </script>
 
 </body>
