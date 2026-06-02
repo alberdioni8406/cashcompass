@@ -883,6 +883,98 @@
   footer a:hover { text-decoration: underline; }
   .footer-links { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1rem; }
 
+  /* ─── X / SOCIAL ACCOUNTS ─── */
+  .x-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 0.75rem;
+  }
+  .x-card {
+    background: var(--bch-card);
+    border: 1px solid var(--bch-border);
+    border-radius: 14px;
+    padding: 1rem 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    text-decoration: none;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .x-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent 60%, #1d9bf010);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .x-card:hover {
+    border-color: #1d9bf0;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px #1d9bf015;
+  }
+  .x-card:hover::before { opacity: 1; }
+  .x-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--bch-mid);
+    border: 1px solid var(--bch-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    transition: border-color 0.2s;
+  }
+  .x-card:hover .x-avatar { border-color: #1d9bf0; }
+  .x-info { flex: 1; min-width: 0; }
+  .x-handle {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .x-desc {
+    font-size: 0.7rem;
+    color: var(--bch-muted);
+    margin-top: 0.15rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .x-badge {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.58rem;
+    padding: 0.15rem 0.4rem;
+    border-radius: 100px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+  .x-badge-dev { background: #7c3aed22; border: 1px solid #7c3aed; color: #a78bfa; }
+  .x-badge-news { background: #0ac18e22; border: 1px solid var(--bch-green); color: var(--bch-green); }
+  .x-badge-community { background: #1d9bf022; border: 1px solid #1d9bf0; color: #1d9bf0; }
+  .x-badge-project { background: #ffb93022; border: 1px solid var(--bch-warn); color: var(--bch-warn); }
+  .x-note {
+    margin-top: 0.75rem;
+    font-size: 0.75rem;
+    color: var(--bch-muted);
+    font-family: 'Space Mono', monospace;
+    padding: 0.6rem 1rem;
+    background: var(--bch-mid);
+    border: 1px solid var(--bch-border);
+    border-radius: 8px;
+    line-height: 1.6;
+  }
+  .x-note span { color: #1d9bf0; }
+
   /* ─── SCROLLBAR ─── */
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: var(--bch-darker); }
@@ -919,6 +1011,8 @@
     <li><a href="#tools">Tools</a></li>
     <li><a href="#explorers">Explorers</a></li>
     <li><a href="#converter">Converter</a></li>
+    <li><a href="#community">Community</a></li>
+    <li><a href="#xaccounts">𝕏 Accounts</a></li>
     <li><a href="#learn">Learn</a></li>
     <li><a href="#donate">Donate</a></li>
   </ul>
@@ -1646,6 +1740,48 @@
       </div>
       <a class="card-link" href="https://purelypeer.cash" target="_blank">↗ purelypeer.cash</a>
     </div>
+    <div class="tool-row">
+      <div class="card-emoji">🤖</div>
+      <div class="tool-row-info">
+        <div class="tool-row-name">AskJSON — BCH AI Assistant</div>
+        <div class="tool-row-desc">An AI powered by 971+ technical BCH Q&A pairs. Ask anything about Bitcoin Cash — protocol, CashTokens, scripting, DeFi, wallets. The fastest way to get accurate BCH answers without digging through docs.</div>
+      </div>
+      <div class="card-tags" style="flex-shrink:0">
+        <span class="tag green">AI</span>
+        <span class="tag green">BCH Only</span>
+        <span class="tag">971+ Q&A</span>
+        <span class="badge badge-new">Unique</span>
+      </div>
+      <a class="card-link" href="https://askjson.layer1.cash" target="_blank">↗ askjson.layer1.cash</a>
+    </div>
+    <div class="tool-row">
+      <div class="card-emoji">🎯</div>
+      <div class="tool-row-info">
+        <div class="tool-row-name">BQuest — Social Identity on BCH</div>
+        <div class="tool-row-desc">Turn your social media handle into a Bitcoin Cash identity. Influencers and projects fund onboarding pools and reward followers instantly with BCH — a viral, non-custodial growth engine for BCH adoption.</div>
+      </div>
+      <div class="card-tags" style="flex-shrink:0">
+        <span class="tag green">Onboarding</span>
+        <span class="tag green">CashTokens</span>
+        <span class="tag">Non-Custodial</span>
+        <span class="badge badge-new">New</span>
+      </div>
+      <a class="card-link" href="https://bquest.cash" target="_blank">↗ bquest.cash</a>
+    </div>
+    <div class="tool-row">
+      <div class="card-emoji">💎</div>
+      <div class="tool-row-info">
+        <div class="tool-row-name">1KBCH — BCH Independent Venture</div>
+        <div class="tool-row-desc">Six integrated BCH engines in one hub: NOX (on-chain intelligence), NEWS (market updates), LEARN (education), MAP (merchant directory), WEALTH (portfolio tracker), and APE CLUB (NFT). Built around BCH micropayments.</div>
+      </div>
+      <div class="card-tags" style="flex-shrink:0">
+        <span class="tag green">Dashboard</span>
+        <span class="tag">NFTs</span>
+        <span class="tag">Merchants</span>
+        <span class="tag">Education</span>
+      </div>
+      <a class="card-link" href="https://1kbch.com" target="_blank">↗ 1kbch.com</a>
+    </div>
   </div>
 </div>
 
@@ -1947,6 +2083,205 @@
       </div>
       <a class="card-link" href="https://www.youtube.com/@AlmuerzoNo" target="_blank">↗ YouTube Channel</a>
     </div>
+    <div class="tool-row">
+      <div class="card-emoji">📰</div>
+      <div class="tool-row-info">
+        <div class="tool-row-name">ElBitcoin.org 🇪🇸</div>
+        <div class="tool-row-desc">The leading Spanish-language Bitcoin Cash blog and media outlet. In-depth articles, analysis, and education about BCH, peer-to-peer economics, and the failure of BTC block size restriction — written for the Spanish-speaking world.</div>
+      </div>
+      <div class="card-tags" style="flex-shrink:0">
+        <span class="tag green">Español</span>
+        <span class="tag">Blog</span>
+        <span class="tag">Education</span>
+      </div>
+      <a class="card-link" href="https://elbitcoin.org" target="_blank">↗ elbitcoin.org</a>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- X COMMUNITY ACCOUNTS -->
+<div class="section" id="xaccounts">
+  <div class="section-header">
+    <div class="section-icon">𝕏</div>
+    <div>
+      <div class="section-title">BCH on X — Who to Follow</div>
+      <div class="section-sub">The most active Bitcoin Cash developers, educators, projects & community voices on X in 2025–2026</div>
+    </div>
+  </div>
+  <div class="x-note">
+    ⚠️ <span>BCH is decentralized</span> — none of these are "official" accounts. These are the most active community-verified voices based on consistent BCH content, engagement, and ecosystem contribution in 2025–2026. Always DYOR.
+  </div>
+  <br>
+  <div style="margin-bottom:0.75rem;">
+    <div class="conv-label">🧑‍💻 Developers & Protocol</div>
+  </div>
+  <div class="x-grid" style="margin-bottom:1.5rem;">
+    <a class="x-card" href="https://x.com/bitjson" target="_blank">
+      <div class="x-avatar">⚙️</div>
+      <div class="x-info">
+        <div class="x-handle">@bitjson</div>
+        <div class="x-desc">CashTokens, CashScript, Bitauth IDE</div>
+      </div>
+      <span class="x-badge x-badge-dev">Dev</span>
+    </a>
+    <a class="x-card" href="https://x.com/GeneralProtocols" target="_blank">
+      <div class="x-avatar">🏛️</div>
+      <div class="x-info">
+        <div class="x-handle">@GeneralProtocols</div>
+        <div class="x-desc">AnyHedge, BCH Bull, DeFi research</div>
+      </div>
+      <span class="x-badge x-badge-dev">Dev</span>
+    </a>
+    <a class="x-card" href="https://x.com/mainnet_pat" target="_blank">
+      <div class="x-avatar">🔧</div>
+      <div class="x-info">
+        <div class="x-handle">@mainnet_pat</div>
+        <div class="x-desc">Mainnet.cash, BCH tooling</div>
+      </div>
+      <span class="x-badge x-badge-dev">Dev</span>
+    </a>
+    <a class="x-card" href="https://x.com/monsterbitar" target="_blank">
+      <div class="x-avatar">🦾</div>
+      <div class="x-info">
+        <div class="x-handle">@monsterbitar</div>
+        <div class="x-desc">Electron Cash contributor & BCH core dev</div>
+      </div>
+      <span class="x-badge x-badge-dev">Dev</span>
+    </a>
+    <a class="x-card" href="https://x.com/EmergentReasons" target="_blank">
+      <div class="x-avatar">🌱</div>
+      <div class="x-info">
+        <div class="x-handle">@EmergentReasons</div>
+        <div class="x-desc">BCH ecosystem developer & funding contributor</div>
+      </div>
+      <span class="x-badge x-badge-dev">Dev</span>
+    </a>
+    <a class="x-card" href="https://x.com/cculianu" target="_blank">
+      <div class="x-avatar">⚡</div>
+      <div class="x-info">
+        <div class="x-handle">@cculianu</div>
+        <div class="x-desc">Calin Culianu · Fulcrum SPV server · Electron Cash · 25k posts</div>
+      </div>
+      <span class="x-badge x-badge-dev">Dev</span>
+    </a>
+    <a class="x-card" href="https://x.com/CauldronDEX" target="_blank">
+      <div class="x-avatar">🧪</div>
+      <div class="x-info">
+        <div class="x-handle">@CauldronDEX</div>
+        <div class="x-desc">Cauldron AMM DEX on BCH</div>
+      </div>
+      <span class="x-badge x-badge-project">Project</span>
+    </a>
+    <a class="x-card" href="https://x.com/Paytaca" target="_blank">
+      <div class="x-avatar">📱</div>
+      <div class="x-info">
+        <div class="x-handle">@Paytaca</div>
+        <div class="x-desc">Paytaca wallet, POS, WalletConnect</div>
+      </div>
+      <span class="x-badge x-badge-project">Project</span>
+    </a>
+    <a class="x-card" href="https://x.com/bch_1org" target="_blank">
+      <div class="x-avatar">🚀</div>
+      <div class="x-info">
+        <div class="x-handle">@bch_1org</div>
+        <div class="x-desc">BCH-1 Hackcelerator & Atlas</div>
+      </div>
+      <span class="x-badge x-badge-project">Project</span>
+    </a>
+  </div>
+
+  <div style="margin-bottom:0.75rem;">
+    <div class="conv-label">📣 News, Content & Evangelists</div>
+  </div>
+  <div class="x-grid" style="margin-bottom:1.5rem;">
+    <a class="x-card" href="https://x.com/TheBCHPodcast" target="_blank">
+      <div class="x-avatar">🎙️</div>
+      <div class="x-info">
+        <div class="x-handle">@TheBCHPodcast</div>
+        <div class="x-desc">Weekly BCH podcast, BCH Bullet newsletter, bank runs</div>
+      </div>
+      <span class="x-badge x-badge-news">Media</span>
+    </a>
+    <a class="x-card" href="https://x.com/BitcoinCashOG" target="_blank">
+      <div class="x-avatar">🦁</div>
+      <div class="x-info">
+        <div class="x-handle">@BitcoinCashOG</div>
+        <div class="x-desc">400k+ impressions, BCH marketing on X</div>
+      </div>
+      <span class="x-badge x-badge-community">Community</span>
+    </a>
+    <a class="x-card" href="https://x.com/elBitcoin" target="_blank">
+      <div class="x-avatar">📰</div>
+      <div class="x-info">
+        <div class="x-handle">@elBitcoin</div>
+        <div class="x-desc">Spanish BCH media · elbitcoin.org editorial account</div>
+      </div>
+      <span class="x-badge x-badge-news">Media 🇪🇸</span>
+    </a>
+    <a class="x-card" href="https://x.com/bchautist" target="_blank">
+      <div class="x-avatar">📊</div>
+      <div class="x-info">
+        <div class="x-handle">@bchautist</div>
+        <div class="x-desc">On-chain analysis, BCH metrics research</div>
+      </div>
+      <span class="x-badge x-badge-news">Analysis</span>
+    </a>
+  </div>
+
+  <div style="margin-bottom:0.75rem;">
+    <div class="conv-label">🌍 Community, Meetups & Educators</div>
+  </div>
+  <div class="x-grid">
+    <a class="x-card" href="https://x.com/alberdioni8406_" target="_blank">
+      <div class="x-avatar">✍️</div>
+      <div class="x-info">
+        <div class="x-handle">@alberdioni8406_</div>
+        <div class="x-desc">120+ BCH articles in 2025 · 185k+ views on Read.cash</div>
+      </div>
+      <span class="x-badge x-badge-news">Writer</span>
+    </a>
+    <a class="x-card" href="https://x.com/Nurain_Dev" target="_blank">
+      <div class="x-avatar">🇳🇬</div>
+      <div class="x-info">
+        <div class="x-handle">@Nurain_Dev</div>
+        <div class="x-desc">BCH evangelist & educator in Nigeria</div>
+      </div>
+      <span class="x-badge x-badge-community">Community</span>
+    </a>
+    <a class="x-card" href="https://x.com/Lightswarm" target="_blank">
+      <div class="x-avatar">⚡</div>
+      <div class="x-info">
+        <div class="x-handle">@Lightswarm — Jerry</div>
+        <div class="x-desc">BCH community builder & advocate</div>
+      </div>
+      <span class="x-badge x-badge-community">Community</span>
+    </a>
+    <a class="x-card" href="https://x.com/twbitcoincash" target="_blank">
+      <div class="x-avatar">🇹🇼</div>
+      <div class="x-info">
+        <div class="x-handle">@twbitcoincash — Gordon Lin</div>
+        <div class="x-desc">BCH advocate & community leader in Taiwan</div>
+      </div>
+      <span class="x-badge x-badge-community">Community</span>
+    </a>
+    <a class="x-card" href="https://x.com/SteveThurmond" target="_blank">
+      <div class="x-avatar">🎯</div>
+      <div class="x-info">
+        <div class="x-handle">@SteveThurmond</div>
+        <div class="x-desc">BCH advocate, educator & community voice</div>
+      </div>
+      <span class="x-badge x-badge-community">Community</span>
+    </a>
+    <a class="x-card" href="https://x.com/00tatts" target="_blank">
+      <div class="x-avatar">🎨</div>
+      <div class="x-info">
+        <div class="x-handle">@00tatts</div>
+        <div class="x-desc">BCH tattoos · Las Vegas Crypto Club · onboarding through culture</div>
+      </div>
+      <span class="x-badge x-badge-community">IRL</span>
+    </a>
   </div>
 </div>
 
