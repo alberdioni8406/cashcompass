@@ -1,0 +1,3322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CashCompass — Bitcoin Cash Ecosystem Hub</title>
+<!-- ─── SEO ─── -->
+<meta name="description" content="Your complete guide to the Bitcoin Cash ecosystem. Wallets, CashTokens, DeFi, DEX, block explorers, tools, address converter, QR generator and more — for beginners and advanced users.">
+<meta name="keywords" content="Bitcoin Cash, BCH, CashTokens, DeFi, wallets, Cauldron DEX, Paytaca, Electron Cash, Cashonize, Zapit, blockchain, crypto, peer-to-peer cash">
+<meta name="author" content="CashCompass">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#0ac18e">
+
+<!-- ─── OPEN GRAPH (Facebook, Telegram, WhatsApp, Discord, LinkedIn) ─── -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://cashcompass.space">
+<meta property="og:title" content="CashCompass 🧭 — Bitcoin Cash Ecosystem Hub">
+<meta property="og:description" content="Your complete guide to the Bitcoin Cash ecosystem. Wallets, CashTokens, DeFi, DEX, tools, address converter & QR generator — for beginners and advanced users.">
+<meta property="og:image" content="https://cashcompass.space/preview.png">
+<meta property="og:image:secure_url" content="https://cashcompass.space/preview.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="CashCompass — Bitcoin Cash Ecosystem Hub. Wallets, CashTokens, DeFi, DEX, tools and more.">
+<meta property="og:site_name" content="CashCompass">
+<meta property="og:locale" content="en_US">
+
+<!-- ─── TWITTER / X ─── -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@bitcoincashorg">
+<meta name="twitter:title" content="CashCompass 🧭 — Bitcoin Cash Ecosystem Hub">
+<meta name="twitter:description" content="Your complete guide to the Bitcoin Cash ecosystem. Wallets, CashTokens, DeFi, DEX, tools, address converter & QR generator — for beginners and advanced users.">
+<meta name="twitter:image" content="https://cashcompass.space/preview.png">
+<meta name="twitter:image:alt" content="CashCompass — Bitcoin Cash Ecosystem Hub">
+
+<!-- ─── WHATSAPP / TELEGRAM LINK PREVIEW (uses OG tags above) ─── -->
+<!-- Both platforms read og:title, og:description, og:image automatically -->
+
+<!-- ─── LINKEDIN ─── -->
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<!-- ─── FAVICON / MOBILE ─── -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧭</text></svg>">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="CashCompass">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+  :root {
+    --bch-green: #0ac18e;
+    --bch-green-dim: #07856280;
+    --bch-green-glow: #0ac18e44;
+    --bch-dark: #0a0f0d;
+    --bch-darker: #060a08;
+    --bch-mid: #111a15;
+    --bch-card: #0e1912;
+    --bch-border: #1a2e22;
+    --bch-text: #c8e6d4;
+    --bch-muted: #5a7a65;
+    --bch-accent: #22ffaa;
+    --bch-warn: #ffb930;
+    --bch-red: #ff4f5a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bch-darker);
+    color: var(--bch-text);
+    font-family: 'Syne', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+  }
+
+  /* ─── BACKGROUND GRID ─── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--bch-border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--bch-border) 1px, transparent 1px);
+    background-size: 40px 40px;
+    opacity: 0.35;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(6,10,8,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--bch-border);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+  }
+  .nav-logo {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--bch-green);
+    letter-spacing: 0.05em;
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--bch-accent); }
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--bch-muted);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--bch-accent); }
+
+  /* ─── HERO ─── */
+  .hero {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 6rem 2rem 4rem;
+    overflow: hidden;
+  }
+  .hero-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -55%);
+    width: min(700px, 100vw);
+    height: min(700px, 100vw);
+    background: radial-gradient(circle, var(--bch-green-glow) 0%, transparent 70%);
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .hero-tag {
+    display: inline-block;
+    background: var(--bch-green-dim);
+    border: 1px solid var(--bch-green);
+    color: var(--bch-green);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    padding: 0.3rem 1rem;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+  }
+  .hero h1 {
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: #fff;
+    margin-bottom: 0.5rem;
+  }
+  .hero h1 span { color: var(--bch-green); }
+  .hero p {
+    font-size: 1.1rem;
+    color: var(--bch-muted);
+    max-width: 580px;
+    margin: 1rem auto 2.5rem;
+    line-height: 1.7;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .stat {
+    text-align: center;
+  }
+  .stat-num {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--bch-green);
+    font-family: 'Space Mono', monospace;
+  }
+  .stat-label {
+    font-size: 0.72rem;
+    color: var(--bch-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 0.2rem;
+  }
+
+  /* ─── FILTER TABS ─── */
+  .filter-bar {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    padding: 1rem 2rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .filter-btn {
+    background: var(--bch-card);
+    border: 1px solid var(--bch-border);
+    color: var(--bch-muted);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    padding: 0.4rem 1rem;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-transform: uppercase;
+  }
+  .filter-btn:hover, .filter-btn.active {
+    background: var(--bch-green);
+    border-color: var(--bch-green);
+    color: var(--bch-darker);
+    font-weight: 700;
+  }
+
+  /* ─── SECTIONS ─── */
+  .section {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 2rem 2rem 3rem;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--bch-border);
+  }
+  .section-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: var(--bch-green-dim);
+    border: 1px solid var(--bch-green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.01em;
+  }
+  .section-sub {
+    font-size: 0.8rem;
+    color: var(--bch-muted);
+    margin-top: 0.1rem;
+  }
+
+  /* ─── CARDS ─── */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+    gap: 1rem;
+  }
+  .card-grid.wide {
+    grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
+  }
+
+  .card {
+    background: var(--bch-card);
+    border: 1px solid var(--bch-border);
+    border-radius: 14px;
+    padding: 1.25rem;
+    transition: all 0.25s;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--bch-green), transparent);
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+  .card:hover {
+    border-color: var(--bch-green);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px var(--bch-green-glow);
+  }
+  .card:hover::before { opacity: 1; }
+
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+  .card-emoji {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bch-mid);
+    border-radius: 10px;
+    border: 1px solid var(--bch-border);
+  }
+  .card-info { flex: 1; min-width: 0; }
+  .card-name {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .card-type {
+    font-size: 0.68rem;
+    color: var(--bch-green);
+    font-family: 'Space Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .card-desc {
+    font-size: 0.82rem;
+    color: var(--bch-muted);
+    line-height: 1.55;
+    flex: 1;
+  }
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    margin-top: 0.2rem;
+  }
+  .tag {
+    background: var(--bch-mid);
+    border: 1px solid var(--bch-border);
+    color: var(--bch-muted);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.63rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 100px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .tag.green { border-color: var(--bch-green); color: var(--bch-green); background: var(--bch-green-dim); }
+  .tag.warn { border-color: var(--bch-warn); color: var(--bch-warn); background: #ffb93015; }
+
+  .card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--bch-green);
+    color: var(--bch-darker);
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 0.45rem 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: all 0.2s;
+    align-self: flex-start;
+    margin-top: auto;
+  }
+  .card-link:hover {
+    background: var(--bch-accent);
+    transform: scale(1.02);
+  }
+  .card-link-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: transparent;
+    border: 1px solid var(--bch-border);
+    color: var(--bch-muted);
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 0.45rem 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s;
+    align-self: flex-start;
+    margin-top: auto;
+  }
+  .card-link-secondary:hover {
+    border-color: var(--bch-green);
+    color: var(--bch-green);
+  }
+  .card-links { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+  /* ─── BADGE ─── */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem;
+    padding: 0.2rem 0.55rem;
+    border-radius: 100px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .badge-new { background: #22ffaa22; border: 1px solid var(--bch-accent); color: var(--bch-accent); }
+  .badge-defi { background: #7c3aed22; border: 1px solid #7c3aed; color: #a78bfa; }
+  .badge-beginner { background: #0ac18e22; border: 1px solid var(--bch-green); color: var(--bch-green); }
+
+  /* ─── TOOLS SECTION SPECIAL ─── */
+  .tool-row {
+    background: var(--bch-card);
+    border: 1px solid var(--bch-border);
+    border-radius: 14px;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    transition: all 0.2s;
+    flex-wrap: wrap;
+  }
+  .tool-row:hover { border-color: var(--bch-green); }
+  .tool-row-list { display: flex; flex-direction: column; gap: 0.75rem; }
+  .tool-row-info { flex: 1; min-width: 200px; }
+  .tool-row-name {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #fff;
+  }
+  .tool-row-desc {
+    font-size: 0.8rem;
+    color: var(--bch-muted);
+    margin-top: 0.2rem;
+    line-height: 1.5;
+  }
+
+  /* ─── ADDRESS CONVERTER ─── */
+  .converter-box {
+    background: var(--bch-card);
+    border: 1px solid var(--bch-border);
+    border-radius: 18px;
+    padding: 2rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .converter-box h3 {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .conv-label {
+    font-size: 0.72rem;
+    color: var(--bch-muted);
+    font-family: 'Space Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.4rem;
+  }
+  .conv-input {
+    width: 100%;
+    background: var(--bch-mid);
+    border: 1px solid var(--bch-border);
+    color: var(--bch-text);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .conv-input:focus { border-color: var(--bch-green); }
+  .conv-input::placeholder { color: var(--bch-muted); }
+  .conv-btn {
+    width: 100%;
+    background: var(--bch-green);
+    color: var(--bch-darker);
+    border: none;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 0.9rem;
+    padding: 0.85rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.05em;
+    margin-top: 1rem;
+  }
+  .conv-btn:hover { background: var(--bch-accent); transform: scale(1.01); }
+  .conv-result {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: var(--bch-mid);
+    border: 1px solid var(--bch-border);
+    border-radius: 10px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.82rem;
+    word-break: break-all;
+    min-height: 48px;
+    color: var(--bch-accent);
+    display: none;
+  }
+  .conv-error { color: var(--bch-red); }
+  .conv-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
+  @media (max-width: 500px) { .conv-cols { grid-template-columns: 1fr; } }
+
+  /* ─── QR GENERATOR ─── */
+  .qr-box {
+    background: var(--bch-card);
+    border: 1px solid var(--bch-border);
+    border-radius: 18px;
+    padding: 2rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .qr-box h3 {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  #qr-output {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #qr-output canvas, #qr-output img {
+    border-radius: 10px;
+    border: 3px solid var(--bch-green);
+    padding: 8px;
+    background: #fff;
+  }
+
+  /* ─── DONATION SECTION ─── */
+  .donation-section {
+    position: relative;
+    z-index: 1;
+    background: linear-gradient(135deg, var(--bch-card) 0%, var(--bch-mid) 100%);
+    border-top: 1px solid var(--bch-border);
+    border-bottom: 1px solid var(--bch-border);
+    padding: 3rem 2rem;
+    text-align: center;
+    margin: 2rem 0;
+  }
+  .donation-inner {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .donation-section h2 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 0.75rem;
+  }
+  .donation-section p {
+    color: var(--bch-muted);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+  .donation-addr {
+    background: var(--bch-darker);
+    border: 1px solid var(--bch-green);
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.82rem;
+    color: var(--bch-green);
+    word-break: break-all;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .donation-addr:hover { background: var(--bch-green-dim); }
+  .copy-icon { flex-shrink: 0; opacity: 0.7; }
+  #donation-qr {
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem 0;
+  }
+  #donation-qr canvas, #donation-qr img {
+    border-radius: 10px;
+    border: 3px solid var(--bch-green);
+    padding: 8px;
+    background: #fff;
+  }
+  .copied-toast {
+    display: none;
+    color: var(--bch-accent);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.78rem;
+    margin-top: 0.5rem;
+  }
+
+  /* ─── DIVIDER ─── */
+  .divider {
+    position: relative;
+    z-index: 1;
+    border: none;
+    border-top: 1px solid var(--bch-border);
+    margin: 0.5rem 0;
+  }
+
+  /* ─── LEARN BOX ─── */
+  .learn-box {
+    background: linear-gradient(135deg, #0a1f14 0%, #0d2b1a 100%);
+    border: 1px solid var(--bch-green);
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .learn-box-icon { font-size: 3rem; flex-shrink: 0; }
+  .learn-box-text h3 { color: var(--bch-green); font-size: 1.1rem; margin-bottom: 0.4rem; }
+  .learn-box-text p { color: var(--bch-muted); font-size: 0.85rem; line-height: 1.6; }
+  .learn-links { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.8rem; }
+  .learn-link {
+    display: inline-block;
+    background: var(--bch-green-dim);
+    border: 1px solid var(--bch-green);
+    color: var(--bch-green);
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 0.35rem 0.85rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .learn-link:hover { background: var(--bch-green); color: var(--bch-darker); }
+
+  /* ─── FEATURED PROJECT ─── */
+  .featured-wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto 0.5rem;
+    padding: 0 2rem;
+  }
+  .featured-label {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.75rem;
+  }
+  .featured-label-text {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--bch-warn);
+    font-weight: 700;
+  }
+  .featured-label-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, #ffb93040, transparent);
+  }
+  .featured-timer {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--bch-warn);
+    background: #ffb93015;
+    border: 1px solid #ffb93050;
+    padding: 0.2rem 0.65rem;
+    border-radius: 100px;
+    letter-spacing: 0.05em;
+  }
+  .featured-card {
+    background: linear-gradient(135deg, #0e1f16 0%, #0a1a12 60%, #0d1f18 100%);
+    border: 1px solid #ffb93060;
+    border-radius: 20px;
+    padding: 2rem 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    width: 100%;
+  }
+  .featured-card:hover {
+    border-color: var(--bch-warn);
+    box-shadow: 0 0 48px #ffb93020;
+  }
+  .featured-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--bch-warn), var(--bch-green), transparent);
+  }
+  .featured-glow {
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, #ffb93015 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .featured-left { position: relative; z-index: 1; }
+  .featured-badges {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.85rem;
+    flex-wrap: wrap;
+  }
+  .featured-badge-star {
+    background: linear-gradient(135deg, #ffb930, #ff8c00);
+    color: #000;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.75rem;
+    border-radius: 100px;
+  }
+  .featured-badge-cat {
+    background: var(--bch-green-dim);
+    border: 1px solid var(--bch-green);
+    color: var(--bch-green);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.75rem;
+    border-radius: 100px;
+  }
+  .featured-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+    line-height: 1.1;
+  }
+  .featured-title span { color: var(--bch-green); }
+  .featured-tagline {
+    font-size: 1rem;
+    color: var(--bch-muted);
+    margin-bottom: 1.2rem;
+    line-height: 1.6;
+    max-width: 580px;
+  }
+  .featured-tagline strong { color: var(--bch-text); }
+  .featured-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1.5rem;
+  }
+  .featured-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .featured-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, var(--bch-green), #07856a);
+    color: var(--bch-darker);
+    font-size: 0.9rem;
+    font-weight: 800;
+    padding: 0.7rem 1.6rem;
+    border-radius: 10px;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: all 0.2s;
+    box-shadow: 0 4px 20px #0ac18e30;
+  }
+  .featured-cta:hover {
+    background: linear-gradient(135deg, var(--bch-accent), var(--bch-green));
+    transform: translateY(-1px);
+    box-shadow: 0 6px 28px #0ac18e50;
+  }
+  .featured-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: transparent;
+    border: 1px solid #ffb93060;
+    color: var(--bch-warn);
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.7rem 1.2rem;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .featured-secondary:hover {
+    border-color: var(--bch-warn);
+    background: #ffb93010;
+  }
+  .featured-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+  .featured-logo-ring {
+    width: 110px;
+    height: 110px;
+    border-radius: 24px;
+    background: linear-gradient(135deg, #0d2b1a, #060a08);
+    border: 2px solid #ffb93060;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.2rem;
+    box-shadow: 0 0 32px #ffb93025;
+    transition: border-color 0.3s;
+  }
+  .featured-card:hover .featured-logo-ring { border-color: var(--bch-warn); }
+  .featured-sponsor-note {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--bch-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    text-align: center;
+    opacity: 0.6;
+  }
+  @media (max-width: 768px) {
+    .featured-card {
+      grid-template-columns: 1fr;
+      padding: 1.5rem;
+    }
+    .featured-right { flex-direction: row; justify-content: flex-start; }
+    .featured-title { font-size: 1.5rem; }
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    position: relative;
+    z-index: 1;
+    background: var(--bch-darker);
+    border-top: 1px solid var(--bch-border);
+    padding: 2.5rem 2rem;
+    text-align: center;
+  }
+  footer p { color: var(--bch-muted); font-size: 0.8rem; line-height: 1.7; }
+  footer a { color: var(--bch-green); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+  .footer-links { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1rem; }
+
+  /* ─── BCH GLOBAL NETWORK ─── */
+  /* Ambassador Cards */
+  .ambassador-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+    gap: 1.25rem;
+    width: 100%;
+  }
+  .ambassador-card {
+    background: var(--bch-card);
+    border: 1px solid var(--bch-border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .ambassador-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--bch-green), transparent);
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+  .ambassador-card:hover {
+    border-color: var(--bch-green);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 36px var(--bch-green-glow);
+  }
+  .ambassador-card:hover::before { opacity: 1; }
+  .ambassador-top {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .ambassador-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 2px solid var(--bch-border);
+    background: var(--bch-mid);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    flex-shrink: 0;
+    transition: border-color 0.25s;
+  }
+  .ambassador-card:hover .ambassador-avatar { border-color: var(--bch-green); }
+  .ambassador-meta { flex: 1; min-width: 0; }
+  .ambassador-name {
+    font-size: 1rem;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.01em;
+  }
+  .ambassador-handle {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--bch-green);
+    margin-top: 0.1rem;
+  }
+  .ambassador-country {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.72rem;
+    color: var(--bch-muted);
+    margin-top: 0.2rem;
+  }
+  .ambassador-roles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+  .ambassador-role {
+    background: var(--bch-mid);
+    border: 1px solid var(--bch-border);
+    color: var(--bch-muted);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem;
+    padding: 0.2rem 0.55rem;
+    border-radius: 100px;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+  }
+  .ambassador-role.primary {
+    background: var(--bch-green-dim);
+    border-color: var(--bch-green);
+    color: var(--bch-green);
+  }
+  .ambassador-desc {
+    font-size: 0.8rem;
+    color: var(--bch-muted);
+    line-height: 1.6;
+    flex: 1;
+  }
+  .ambassador-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: #1d9bf015;
+    border: 1px solid #1d9bf050;
+    color: #1d9bf0;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.4rem 0.9rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s;
+    align-self: flex-start;
+    letter-spacing: 0.05em;
+  }
+  .ambassador-link:hover {
+    background: #1d9bf025;
+    border-color: #1d9bf0;
+  }
+
+  /* Developer X cards */
+  .x-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(220px, 100%), 1fr));
+    gap: 0.75rem;
+    width: 100%;
+  }
+  .x-card {
+    background: var(--bch-card);
+    border: 1px solid var(--bch-border);
+    border-radius: 14px;
+    padding: 1rem 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    text-decoration: none;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .x-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent 60%, #1d9bf010);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .x-card:hover {
+    border-color: #1d9bf0;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px #1d9bf015;
+  }
+  .x-card:hover::before { opacity: 1; }
+  .x-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--bch-mid);
+    border: 1px solid var(--bch-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    transition: border-color 0.2s;
+  }
+  .x-card:hover .x-avatar { border-color: #1d9bf0; }
+  .x-info { flex: 1; min-width: 0; }
+  .x-handle {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .x-desc {
+    font-size: 0.7rem;
+    color: var(--bch-muted);
+    margin-top: 0.15rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .x-badge {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.58rem;
+    padding: 0.15rem 0.4rem;
+    border-radius: 100px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+  .x-badge-dev { background: #7c3aed22; border: 1px solid #7c3aed; color: #a78bfa; }
+  .x-badge-news { background: #0ac18e22; border: 1px solid var(--bch-green); color: var(--bch-green); }
+  .x-badge-community { background: #1d9bf022; border: 1px solid #1d9bf0; color: #1d9bf0; }
+  .x-badge-project { background: #ffb93022; border: 1px solid var(--bch-warn); color: var(--bch-warn); }
+  .x-note {
+    margin-top: 0.75rem;
+    font-size: 0.75rem;
+    color: var(--bch-muted);
+    font-family: 'Space Mono', monospace;
+    padding: 0.6rem 1rem;
+    background: var(--bch-mid);
+    border: 1px solid var(--bch-border);
+    border-radius: 8px;
+    line-height: 1.6;
+  }
+  .x-note span { color: #1d9bf0; }
+
+  /* Activities Section */
+  .activity-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+    gap: 1.25rem;
+    width: 100%;
+  }
+  .activity-card {
+    background: var(--bch-card);
+    border: 1px solid var(--bch-border);
+    border-radius: 16px;
+    padding: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .activity-card:hover {
+    border-color: var(--bch-warn);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px #ffb93015;
+  }
+  .activity-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--bch-warn), transparent);
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+  .activity-card:hover::before { opacity: 1; }
+  .activity-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+  .activity-type {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+  .type-meetup { background: #0ac18e22; border: 1px solid var(--bch-green); color: var(--bch-green); }
+  .type-education { background: #7c3aed22; border: 1px solid #7c3aed; color: #a78bfa; }
+  .type-merchant { background: #ffb93022; border: 1px solid var(--bch-warn); color: var(--bch-warn); }
+  .type-charity { background: #ff4f5a22; border: 1px solid var(--bch-red); color: var(--bch-red); }
+  .type-hackathon { background: #22ffaa22; border: 1px solid var(--bch-accent); color: var(--bch-accent); }
+  .activity-flag {
+    font-size: 1.4rem;
+    line-height: 1;
+  }
+  .activity-title {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.25;
+  }
+  .activity-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    font-size: 0.72rem;
+    color: var(--bch-muted);
+    font-family: 'Space Mono', monospace;
+  }
+  .activity-meta span { display: flex; align-items: center; gap: 0.25rem; }
+  .activity-desc {
+    font-size: 0.8rem;
+    color: var(--bch-muted);
+    line-height: 1.6;
+    flex: 1;
+  }
+  .activity-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: transparent;
+    border: 1px solid var(--bch-border);
+    color: var(--bch-muted);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.35rem 0.8rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s;
+    align-self: flex-start;
+    font-family: 'Space Mono', monospace;
+  }
+  .activity-link:hover { border-color: var(--bch-green); color: var(--bch-green); }
+
+  /* Sub-section label */
+  .sub-label {
+    font-size: 0.72rem;
+    color: var(--bch-muted);
+    font-family: 'Space Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--bch-border);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .sub-label::before {
+    content: '';
+    width: 3px;
+    height: 14px;
+    background: var(--bch-green);
+    border-radius: 2px;
+    display: inline-block;
+  }
+
+  /* ─── SCROLLBAR ─── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bch-darker); }
+  ::-webkit-scrollbar-thumb { background: var(--bch-border); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--bch-green); }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .card, .tool-row { animation: fadeInUp 0.4s ease both; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    nav { padding: 0 1rem; }
+    .nav-links { display: none; }
+    .hero { padding: 4rem 1.5rem 3rem; }
+    .section { padding: 1.5rem 1rem 2rem; width: 100%; }
+    .featured-wrap { padding: 0 1rem; }
+    .card-grid { grid-template-columns: 1fr; }
+    .card-grid.wide { grid-template-columns: 1fr; }
+    .conv-cols { grid-template-columns: 1fr; }
+    .featured-card { grid-template-columns: 1fr; padding: 1.5rem; }
+    .featured-right { flex-direction: row; justify-content: flex-start; }
+    .featured-title { font-size: 1.5rem; }
+    .ambassador-grid { grid-template-columns: 1fr; }
+    .x-grid { grid-template-columns: 1fr; }
+    .activity-grid { grid-template-columns: 1fr; }
+    .tool-row { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+    .hero-stats { gap: 1.5rem; }
+    .learn-box { flex-direction: column; gap: 1rem; }
+    .donation-section { padding: 2rem 1rem; }
+    .footer-links { gap: 1rem; }
+    .hero-glow { width: 100vw; height: 100vw; }
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .ambassador-grid { grid-template-columns: repeat(2, 1fr); }
+    .activity-grid { grid-template-columns: repeat(2, 1fr); }
+    .x-grid { grid-template-columns: repeat(3, 1fr); }
+    .card-grid { grid-template-columns: repeat(2, 1fr); }
+    .card-grid.wide { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (min-width: 1025px) {
+    .ambassador-grid { grid-template-columns: repeat(3, 1fr); }
+    .activity-grid { grid-template-columns: repeat(3, 1fr); }
+    .x-grid { grid-template-columns: repeat(4, 1fr); }
+    .card-grid { grid-template-columns: repeat(3, 1fr); }
+    .card-grid.wide { grid-template-columns: repeat(2, 1fr); }
+    .tool-row-list { width: 100%; }
+  }
+
+  /* Ensure no element overflows its container */
+  img, video, canvas, svg { max-width: 100%; }
+  .conv-input, .conv-result, .conv-btn { max-width: 100%; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Cash<span>Compass</span></a>
+  <ul class="nav-links">
+    <li><a href="#wallets">Wallets</a></li>
+    <li><a href="#cashtokens">CashTokens</a></li>
+    <li><a href="#defi">DeFi</a></li>
+    <li><a href="#tools">Tools</a></li>
+    <li><a href="#explorers">Explorers</a></li>
+    <li><a href="#converter">Converter</a></li>
+    <li><a href="#community">Community</a></li>
+    <li><a href="#xaccounts">🌍 Network</a></li>
+    <li><a href="#activities">Events</a></li>
+    <li><a href="#learn">Learn</a></li>
+    <li><a href="#donate">Donate</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-tag">✦ CashCompass — The Complete Resource Hub</div>
+  <h1>Bitcoin Cash<br><span>Ecosystem</span></h1>
+  <p>Everything you need to use, build, and thrive in the BCH ecosystem — wallets, DeFi, CashTokens, tools, and more. From beginner to advanced.</p>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">~$0.001</div>
+      <div class="stat-label">Avg Tx Fee</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">32MB+</div>
+      <div class="stat-label">Block Size</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">~10min</div>
+      <div class="stat-label">Block Time</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">2009</div>
+      <div class="stat-label">Genesis Block</div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURED PROJECT OF THE WEEK -->
+<div class="featured-wrap">
+  <div class="featured-label">
+    <span class="featured-label-text">⭐ Featured Project of the Week</span>
+    <div class="featured-label-line"></div>
+    <span class="featured-timer" id="featured-countdown">Loading...</span>
+  </div>
+  <div class="featured-card">
+    <div class="featured-glow"></div>
+    <div class="featured-left">
+      <div class="featured-badges">
+        <span class="featured-badge-star">⭐ This Week's Pick</span>
+        <span class="featured-badge-cat">🟣 Social · Nostr</span>
+        <span class="badge badge-new">Decentralized</span>
+      </div>
+      <div class="featured-title">BCH<span>nostr</span></div>
+      <div class="featured-tagline">
+        <strong>Bitcoin Cash meets Nostr</strong> — the censorship-resistant, decentralized social protocol.
+        BCHnostr bridges the BCH community into the open Nostr network where no platform can ban you,
+        delete your posts, or freeze your account. Send and receive <strong>BCH tips natively</strong>,
+        own your identity with your private key, and connect with thousands of BCH users worldwide —
+        all without a single point of failure.
+      </div>
+      <div class="featured-tags">
+        <span class="tag green">Nostr Protocol</span>
+        <span class="tag green">BCH Tipping</span>
+        <span class="tag green">Censorship Resistant</span>
+        <span class="tag">Self-Sovereign Identity</span>
+        <span class="tag">Open Source</span>
+        <span class="tag">No KYC</span>
+      </div>
+      <div class="featured-actions">
+        <a class="featured-cta" href="https://bchnostr.com/?ref=07b2bfa4403e6ae25a1a91906a5d007620cbdd9b7868373125117529e6bb8164" target="_blank" rel="noopener">
+          🟣 Explore BCHnostr ↗
+        </a>
+        <a class="featured-secondary" href="#donate" onclick="document.getElementById('donate').scrollIntoView({behavior:'smooth'});return false;">
+          💚 Tip CashCompass in BCH
+        </a>
+      </div>
+    </div>
+    <div class="featured-right">
+      <div class="featured-logo-ring">🟣</div>
+      <div class="featured-sponsor-note">Featured · Week 1</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- LEARN / START HERE BOX -->
+<div class="section" id="learn">
+  <div class="learn-box">
+    <div class="learn-box-icon">🚀</div>
+    <div class="learn-box-text">
+      <h3>New to Bitcoin Cash? Start Here.</h3>
+      <p>Bitcoin Cash is fast, cheap, and reliable peer-to-peer electronic cash. It supports native smart contracts and tokens (CashTokens) with fees under a cent. Visit these official resources first.</p>
+      <div class="learn-links">
+        <a class="learn-link" href="https://bitcoincash.org" target="_blank">BitcoinCash.org</a>
+        <a class="learn-link" href="https://minisatoshi.cash" target="_blank">MiniSatoshi.cash</a>
+        <a class="learn-link" href="https://discover.cash" target="_blank">Discover.Cash</a>
+        <a class="learn-link" href="https://bch.info/en/wallets" target="_blank">BCH.info</a>
+        <a class="learn-link" href="https://whybitcoincash.com" target="_blank">WhyBitcoinCash.com</a>
+        <a class="learn-link" href="https://awesomebitcoin.cash" target="_blank">AwesomeBitcoin.cash</a>
+        <a class="learn-link" href="https://documentation.cash" target="_blank">BCH Standards</a>
+        <a class="learn-link" href="https://bitcoincashpodcast.com" target="_blank">BCH Podcast</a>
+        <a class="learn-link" href="https://bch-1.org" target="_blank">BCH-1 Hackcelerator</a>
+        <a class="learn-link" href="https://minisatoshi.cash/ecosystem" target="_blank">Full Ecosystem Map</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- WALLETS -->
+<div class="section" id="wallets">
+  <div class="section-header">
+    <div class="section-icon">👛</div>
+    <div>
+      <div class="section-title">Wallets</div>
+      <div class="section-sub">Self-custody your BCH — choose by platform and features</div>
+    </div>
+  </div>
+  <div class="card-grid">
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-emoji">📱</div>
+        <div class="card-info">
+          <div class="card-name">Paytaca</div>
+          <div class="card-type">Mobile · Browser · CashTokens</div>
+        </div>
+      </div>
+      <div class="card-desc">The most feature-complete BCH wallet. Supports CashTokens, WalletConnect, CashConnect, BCHBull contracts, built-in BCH on/off ramp (buy & sell BCH with fiat), P2P fiat market, point-of-sale, and AI agent payments via x402.</div>
+      <div class="card-tags">
+        <span class="tag green">CashTokens</span>
+        <span class="tag green">On/Off Ramp</span>
+        <span class="tag green">WalletConnect</span>
+        <span class="tag">Android</span>
+        <span class="tag">iOS</span>
+        <span class="tag">Browser</span>
+        <span class="badge badge-beginner">Beginner Friendly</span>
+      </div>
+      <div class="card-links">
+        <a class="card-link" href="https://www.paytaca.com" target="_blank">↗ Official Site</a>
+        <a class="card-link-secondary" href="https://t.me/PaytacaWalletApp" target="_blank">Telegram</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-emoji">💻</div>
+        <div class="card-info">
+          <div class="card-name">Electron Cash</div>
+          <div class="card-type">Desktop · Advanced · Privacy</div>
+        </div>
+      </div>
+      <div class="card-desc">The gold-standard desktop wallet. Full CashTokens support, CashFusion privacy, coin control (UTXOs), Ledger/Trezor hardware wallet support, and an extensible plugin system.</div>
+      <div class="card-tags">
+        <span class="tag green">CashTokens</span>
+        <span class="tag">CashFusion</span>
+        <span class="tag">Windows</span>
+        <span class="tag">Linux</span>
+        <span class="tag">macOS</span>
+        <span class="tag warn">Advanced</span>
+      </div>
+      <div class="card-links">
+        <a class="card-link" href="https://electroncash.org" target="_blank">↗ electroncash.org</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-emoji">🌐</div>
+        <div class="card-info">
+          <div class="card-name">Cashonize</div>
+          <div class="card-type">Browser · Desktop · DeFi</div>
+        </div>
+      </div>
+      <div class="card-desc">The go-to wallet for DeFi and DEX interactions. Supports CashTokens, WalletConnect, CashConnect, Cauldron DEX price display, sweep keys, and installable as PWA.</div>
+      <div class="card-tags">
+        <span class="tag green">CashTokens</span>
+        <span class="tag green">DeFi</span>
+        <span class="tag">WalletConnect</span>
+        <span class="tag">Windows</span>
+        <span class="tag">Android</span>
+        <span class="badge badge-defi">DeFi Ready</span>
+      </div>
+      <div class="card-links">
+        <a class="card-link" href="https://cashonize.com" target="_blank">↗ cashonize.com</a>
+        <a class="card-link-secondary" href="https://github.com/cashonize/cashonize-wallet/releases" target="_blank">GitHub Releases</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-emoji">⚡</div>
+        <div class="card-info">
+          <div class="card-name">Zapit</div>
+          <div class="card-type">Mobile · Browser · Multi-chain</div>
+        </div>
+      </div>
+      <div class="card-desc">BCH-centered multi-chain wallet with CashTokens, WalletConnect, P2P fiat market, wallet aliases, and integrated swaps. Great for everyday spending and trading.</div>
+      <div class="card-tags">
+        <span class="tag green">CashTokens</span>
+        <span class="tag">P2P Market</span>
+        <span class="tag">Android</span>
+        <span class="tag">iOS</span>
+        <span class="tag">Browser</span>
+      </div>
+      <div class="card-links">
+        <a class="card-link" href="https://www.zapit.io" target="_blank">↗ zapit.io</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-emoji">🔵</div>
+        <div class="card-info">
+          <div class="card-name">Selene Wallet</div>
+          <div class="card-type">Mobile · Lightweight</div>
+        </div>
+      </div>
+      <div class="card-desc">Lightweight and focused on reliable everyday payments. Supports CashTokens and keeps everything simple — ideal for users who want speed without complexity.</div>
+      <div class="card-tags">
+        <span class="tag green">CashTokens</span>
+        <span class="tag">Android</span>
+        <span class="tag">iOS</span>
+        <span class="badge badge-beginner">Simple</span>
+      </div>
+      <div class="card-links">
+        <a class="card-link" href="https://selene.cash" target="_blank">↗ selene.cash</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-emoji">🔐</div>
+        <div class="card-info">
+          <div class="card-name">Bitcoin.com Wallet</div>
+          <div class="card-type">Mobile · Beginner</div>
+        </div>
+      </div>
+      <div class="card-desc">Popular, beginner-friendly mobile wallet from Bitcoin.com. Easy on-ramp with buy/sell features and a clean interface for everyday BCH use.</div>
+      <div class="card-tags">
+        <span class="tag">Android</span>
+        <span class="tag">iOS</span>
+        <span class="badge badge-beginner">Easy Start</span>
+      </div>
+      <div class="card-links">
+        <a class="card-link" href="https://wallet.bitcoin.com" target="_blank">↗ wallet.bitcoin.com</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-emoji">🥧</div>
+        <div class="card-info">
+          <div class="card-name">Cake Wallet</div>
+          <div class="card-type">Mobile · Privacy · Multi-coin</div>
+        </div>
+      </div>
+      <div class="card-desc">Open-source privacy-focused multi-coin wallet supporting BCH alongside Monero and other coins. Available on iOS and Android with a strong track record.</div>
+      <div class="card-tags">
+        <span class="tag">Android</span>
+        <span class="tag">iOS</span>
+        <span class="tag">Privacy</span>
+        <span class="tag">Open Source</span>
+      </div>
+      <div class="card-links">
+        <a class="card-link" href="https://cakewallet.com" target="_blank">↗ cakewallet.com</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-emoji">🛡️</div>
+        <div class="card-info">
+          <div class="card-name">OPTN Labs Wallet</div>
+          <div class="card-type">Mobile · Quantum-Resistant</div>
+        </div>
+      </div>
+      <div class="card-desc">Next-generation wallet supporting post-quantum security via Quantumroot technology. Stores BCH, CashTokens, and DeFi assets with quantum-resistant keys on Android and iOS.</div>
+      <div class="card-tags">
+        <span class="tag green">CashTokens</span>
+        <span class="tag">Post-Quantum</span>
+        <span class="tag">DeFi</span>
+        <span class="badge badge-new">New 2026</span>
+      </div>
+      <div class="card-links">
+        <a class="card-link" href="https://www.optnlabs.com/wallet" target="_blank">↗ optnlabs.com</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- CASHTOKENS -->
+<div class="section" id="cashtokens">
+  <div class="section-header">
+    <div class="section-icon">🪙</div>
+    <div>
+      <div class="section-title">CashTokens</div>
+      <div class="section-sub">Native fungible tokens & NFTs on Bitcoin Cash — activated May 2023</div>
+    </div>
+  </div>
+  <div class="card-grid">
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-emoji">📖</div>
+        <div class="card-info">
+          <div class="card-name">CashTokens CHIP</div>
+          <div class="card-type">Official Specification</div>
+        </div>
+      </div>
+      <div class="card-desc">The official Bitcoin Cash Improvement Proposal that defines CashTokens — fungible tokens and NFTs baked into the BCH protocol at Layer 1.</div>
+      <div class="card-tags">
+        <span class="tag">Specification</span>
+        <span class="tag">Technical</span>
+      </div>
+      <div class="card-links">
+        <a class="card-link" href="https://github.com/bitjson/cashtokens" target="_blank">↗ GitHub Spec</a>
+        <a class="card-link-secondary" href="https://bitcoinprotocol.org/cashtokens" target="_blank">Learn More</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-emoji">🗂️</div>
+        <div class="card-info">
+          <div class="card-name">BCMR Token Registry</div>
+          <div class="card-type">Metadata Standard</div>
+        </div>
+      </div>
+      <div class="card-desc">Bitcoin Cash Metadata Registries (BCMR) — the standard for registering and resolving token metadata like names, icons, and descriptions on BCH.</div>
+      <div class="card-tags">
+        <span class="tag">Registry</span>
+        <span class="tag">Standard</span>
+      </div>
+      <div class="card-links">
+        <a class="card-link" href="https://github.com/bitjson/chip-bcmr" target="_blank">↗ BCMR Spec</a>
+        <a class="card-link-secondary" href="https://otr.cash" target="_blank">otr.cash Registry</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-emoji">🔍</div>
+        <div class="card-info">
+          <div class="card-name">SalemKode Token Explorer</div>
+          <div class="card-type">CashTokens Explorer</div>
+        </div>
+      </div>
+      <div class="card-desc">Dedicated explorer for browsing all CashTokens on the BCH blockchain — view fungible tokens, NFTs, categories, supply, and more.</div>
+      <div class="card-tags">
+        <span class="tag green">CashTokens</span>
+        <span class="tag">NFTs</span>
+        <span class="tag">Explorer</span>
+      </div>
+      <div class="card-links">
+        <a class="card-link" href="https://explorer.salemkode.com" target="_blank">↗ explorer.salemkode.com</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-emoji">🖼️</div>
+        <div class="card-info">
+          <div class="card-name">TapSwap</div>
+          <div class="card-type">NFT Marketplace</div>
+        </div>
+      </div>
+      <div class="card-desc">The leading decentralized NFT marketplace for CashTokens on Bitcoin Cash. Buy, sell, and trade BCH NFTs trustlessly on-chain.</div>
+      <div class="card-tags">
+        <span class="tag green">NFTs</span>
+        <span class="tag green">CashTokens</span>
+        <span class="tag">DEX</span>
+      </div>
+      <div class="card-links">
+        <a class="card-link" href="https://tapswap.cash" target="_blank">↗ tapswap.cash</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-emoji">🧠</div>
+        <div class="card-info">
+          <div class="card-name">CashScript</div>
+          <div class="card-type">Smart Contract Language</div>
+        </div>
+      </div>
+      <div class="card-desc">The high-level scripting language for writing BCH smart contracts and CashTokens logic. CashScript v0.11.0 brings powerful debugging capabilities for developers.</div>
+      <div class="card-tags">
+        <span class="tag">Dev Tool</span>
+        <span class="tag">Smart Contracts</span>
+        <span class="tag warn">Advanced</span>
+      </div>
+      <div class="card-links">
+        <a class="card-link" href="https://cashscript.org" target="_blank">↗ cashscript.org</a>
+        <a class="card-link-secondary" href="https://playground.cashscript.org" target="_blank">Playground</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-emoji">🏆</div>
+        <div class="card-info">
+          <div class="card-name">BCH Guru</div>
+          <div class="card-type">NFT / Prediction Market</div>
+        </div>
+      </div>
+      <div class="card-desc">10,000-piece BCH NFT collection with community governance and GURU token rewards. Includes a BCH price prediction game and one of the earliest CashTokens NFT projects.</div>
+      <div class="card-tags">
+        <span class="tag green">NFTs</span>
+        <span class="tag green">CashTokens</span>
+        <span class="tag">Community</span>
+      </div>
+      <div class="card-links">
+        <a class="card-link" href="https://bch.guru" target="_blank">↗ bch.guru</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- DEFI / DEX -->
+<div class="section" id="defi">
+  <div class="section-header">
+    <div class="section-icon">⚗️</div>
+    <div>
+      <div class="section-title">DeFi & DEX</div>
+      <div class="section-sub">Decentralized finance, swaps, lending, stablecoins, and perpetuals on BCH</div>
+    </div>
+  </div>
+  <div class="card-grid wide">
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-emoji">🧪</div>
+        <div class="card-info">
+          <div class="card-name">Cauldron DEX</div>
+          <div class="card-type">AMM DEX · #1 on BCH</div>
+        </div>
+      </div>
+      <div class="card-desc">The first and leading decentralized exchange on Bitcoin Cash. An Automated Market Maker (AMM) for CashTokens with liquidity pools, token swaps, and yield farming. Integrated into Cashonize wallet.</div>
+      <div class="card-tags">
+        <span class="tag green">AMM</span>
+        <span class="tag green">CashTokens</span>
+        <span class="tag">Liquidity Pools</span>
+        <span class="badge badge-defi">Top DEX</span>
+      </div>
+      <div class="card-links">
+        <a class="card-link" href="https://cauldron.quest" target="_blank">↗ cauldron.quest</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-emoji">🐂</div>
+        <div class="card-info">
+          <div class="card-name">BCH Bull / AnyHedge</div>
+          <div class="card-type">Perpetual Swaps · Hedging</div>
+        </div>
+      </div>
+      <div class="card-desc">Permissionless, on-chain, non-custodial leverage trading and hedging with Bitcoin Cash via the AnyHedge protocol. Take long or short positions directly on L1.</div>
+      <div class="card-tags">
+        <span class="tag green">Leverage</span>
+        <span class="tag">Hedging</span>
+        <span class="tag">Non-custodial</span>
+        <span class="tag warn">Advanced</span>
+      </div>
+      <div class="card-links">
+        <a class="card-link" href="https://bchbull.com" target="_blank">↗ bchbull.com</a>
+        <a class="card-link-secondary" href="https://anyhedge.com" target="_blank">AnyHedge Protocol</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-emoji">🏦</div>
+        <div class="card-info">
+          <div class="card-name">Moria Protocol (MUSD)</div>
+          <div class="card-type">Stablecoin · Lending</div>
+        </div>
+      </div>
+      <div class="card-desc">By Riften Labs. Turn your BCH into MUSD decentralized stablecoins by collateralizing. Pair MUSD + BCH in Cauldron DEX liquidity pools for estimated ~14.5% APY yields.</div>
+      <div class="card-tags">
+        <span class="tag green">Stablecoin</span>
+        <span class="tag green">Lending</span>
+        <span class="tag">MUSD</span>
+        <span class="badge badge-new">Live 2025</span>
+      </div>
+      <div class="card-links">
+        <a class="card-link" href="https://moria.cash" target="_blank">↗ moria.cash</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-emoji">💵</div>
+        <div class="card-info">
+          <div class="card-name">ParyonUSD / BCH Stablecoins</div>
+          <div class="card-type">Stablecoin Ecosystem</div>
+        </div>
+      </div>
+      <div class="card-desc">Decentralized USD-pegged stablecoins native to the BCH network, enabling stable-value payments and DeFi collateral without leaving the Bitcoin Cash ecosystem.</div>
+      <div class="card-tags">
+        <span class="tag green">Stablecoin</span>
+        <span class="tag green">CashTokens</span>
+      </div>
+      <div class="card-links">
+        <a class="card-link" href="https://bitcoiniscash.org/bitcoin-cash-stablecoins/" target="_blank">↗ Learn About BCH Stablecoins</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-emoji">🔁</div>
+        <div class="card-info">
+          <div class="card-name">Flipstarter</div>
+          <div class="card-type">Crowdfunding · Assurance Contracts</div>
+        </div>
+      </div>
+      <div class="card-desc">Decentralized crowdfunding platform built on Bitcoin Cash using assurance contracts. Fund open-source projects and initiatives in BCH — no middlemen, no platform fees.</div>
+      <div class="card-tags">
+        <span class="tag">Crowdfunding</span>
+        <span class="tag">BCH Native</span>
+      </div>
+      <div class="card-links">
+        <a class="card-link" href="https://flipstarter.cash" target="_blank">↗ flipstarter.cash</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-emoji">⚡</div>
+        <div class="card-info">
+          <div class="card-name">CashVM (Layla Upgrade)</div>
+          <div class="card-type">Turing-Complete L1 Scripts</div>
+        </div>
+      </div>
+      <div class="card-desc">Activated May 2026: CashVM brings Turing-complete scripting to BCH enabling complex DeFi protocols — loops, functions, and advanced opcodes directly on Layer 1.</div>
+      <div class="card-tags">
+        <span class="tag green">Smart Contracts</span>
+        <span class="tag">CashVM</span>
+        <span class="badge badge-new">May 2026</span>
+      </div>
+      <div class="card-links">
+        <a class="card-link" href="https://minisatoshi.cash/upgrade-history" target="_blank">↗ Upgrade History</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- BLOCK EXPLORERS -->
+<div class="section" id="explorers">
+  <div class="section-header">
+    <div class="section-icon">🔭</div>
+    <div>
+      <div class="section-title">Block Explorers</div>
+      <div class="section-sub">Track transactions, addresses, blocks, and tokens on-chain</div>
+    </div>
+  </div>
+  <div class="tool-row-list">
+    <div class="tool-row">
+      <div class="card-emoji">🌐</div>
+      <div class="tool-row-info">
+        <div class="tool-row-name">Blockchain.info / Bitcoin.com Explorer</div>
+        <div class="tool-row-desc">Popular, beginner-friendly BCH explorer with clean UI. Search addresses, transactions, and blocks.</div>
+      </div>
+      <div class="card-tags" style="flex-shrink:0">
+        <span class="tag">Beginner</span>
+      </div>
+      <a class="card-link" href="https://explorer.bitcoin.com/bch" target="_blank">↗ Visit</a>
+    </div>
+    <div class="tool-row">
+      <div class="card-emoji">📡</div>
+      <div class="tool-row-info">
+        <div class="tool-row-name">BCHBlockExplorer.com</div>
+        <div class="tool-row-desc">Detailed BCH-specific explorer showing recent blocks, mempool, transactions, and address data.</div>
+      </div>
+      <a class="card-link" href="https://bchblockexplorer.com" target="_blank">↗ Visit</a>
+    </div>
+    <div class="tool-row">
+      <div class="card-emoji">🔎</div>
+      <div class="tool-row-info">
+        <div class="tool-row-name">Blockchair BCH</div>
+        <div class="tool-row-desc">Advanced explorer with rich filtering, CSV exports, address clustering, and privacy insights.</div>
+      </div>
+      <div class="card-tags" style="flex-shrink:0">
+        <span class="tag warn">Advanced</span>
+      </div>
+      <a class="card-link" href="https://blockchair.com/bitcoin-cash" target="_blank">↗ Visit</a>
+    </div>
+    <div class="tool-row">
+      <div class="card-emoji">📊</div>
+      <div class="tool-row-info">
+        <div class="tool-row-name">OKLink BCH Explorer</div>
+        <div class="tool-row-desc">Full-featured explorer with blocks, addresses, transactions, tokens, and network statistics.</div>
+      </div>
+      <a class="card-link" href="https://www.oklink.com/bch" target="_blank">↗ Visit</a>
+    </div>
+    <div class="tool-row">
+      <div class="card-emoji">🗂️</div>
+      <div class="tool-row-info">
+        <div class="tool-row-name">SalemKode Token Explorer</div>
+        <div class="tool-row-desc">Dedicated CashTokens explorer — browse all BCH fungible tokens and NFTs by category.</div>
+      </div>
+      <div class="card-tags" style="flex-shrink:0">
+        <span class="tag green">CashTokens</span>
+      </div>
+      <a class="card-link" href="https://explorer.salemkode.com" target="_blank">↗ Visit</a>
+    </div>
+    <div class="tool-row">
+      <div class="card-emoji">📈</div>
+      <div class="tool-row-info">
+        <div class="tool-row-name">BitInfoCharts BCH</div>
+        <div class="tool-row-desc">Rich historical charts and statistics: hashrate, fees, difficulty, transaction counts, and more.</div>
+      </div>
+      <a class="card-link" href="https://bitinfocharts.com/bitcoin%20cash/" target="_blank">↗ Visit</a>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- TOOLS -->
+<div class="section" id="tools">
+  <div class="section-header">
+    <div class="section-icon">🛠️</div>
+    <div>
+      <div class="section-title">Developer & Power User Tools</div>
+      <div class="section-sub">Libraries, testnet faucets, network stats, and dev resources</div>
+    </div>
+  </div>
+  <div class="tool-row-list">
+    <div class="tool-row">
+      <div class="card-emoji">⚗️</div>
+      <div class="tool-row-info">
+        <div class="tool-row-name">Mainnet.cash / Mainnet-JS</div>
+        <div class="tool-row-desc">JavaScript library (v3+) for building BCH apps with wallet support, CashTokens, and REST API. The easiest way to build on BCH.</div>
+      </div>
+      <a class="card-link" href="https://mainnet.cash" target="_blank">↗ mainnet.cash</a>
+    </div>
+    <div class="tool-row">
+      <div class="card-emoji">🎮</div>
+      <div class="tool-row-info">
+        <div class="tool-row-name">CashScript Playground</div>
+        <div class="tool-row-desc">Write, compile, and test BCH smart contracts in your browser. Perfect for learning CashScript.</div>
+      </div>
+      <a class="card-link" href="https://playground.cashscript.org" target="_blank">↗ Visit</a>
+    </div>
+    <div class="tool-row">
+      <div class="card-emoji">🚰</div>
+      <div class="tool-row-info">
+        <div class="tool-row-name">BCH Testnet Faucet</div>
+        <div class="tool-row-desc">Get free testnet BCH for developing and testing. Supports Testnet3, Testnet4, and Chipnet. Community-run and funded via Flipstarter.</div>
+      </div>
+      <a class="card-link" href="https://tbch.googol.cash" target="_blank">↗ Testnet Faucet</a>
+    </div>
+    <div class="tool-row">
+      <div class="card-emoji">📡</div>
+      <div class="tool-row-info">
+        <div class="tool-row-name">CashNodes.io — Node Stats</div>
+        <div class="tool-row-desc">Live map and count of BCH nodes worldwide with software version breakdown. Run by Bitcoin Unlimited.</div>
+      </div>
+      <a class="card-link" href="https://cashnodes.io" target="_blank">↗ cashnodes.io</a>
+    </div>
+    <div class="tool-row">
+      <div class="card-emoji">📊</div>
+      <div class="tool-row-info">
+        <div class="tool-row-name">BCH Network Metrics</div>
+        <div class="tool-row-desc">Real-time and historical BCH network statistics — hashrate, block times, fees, mempool, and more.</div>
+      </div>
+      <a class="card-link" href="https://jettscythe.xyz/metrics" target="_blank">↗ Visit</a>
+    </div>
+    <div class="tool-row">
+      <div class="card-emoji">📜</div>
+      <div class="tool-row-info">
+        <div class="tool-row-name">BCH Standards / Documentation.cash</div>
+        <div class="tool-row-desc">Official documentation of the Bitcoin Cash protocol, scripts, consensus rules, and specifications.</div>
+      </div>
+      <a class="card-link" href="https://documentation.cash" target="_blank">↗ documentation.cash</a>
+    </div>
+    <div class="tool-row">
+      <div class="card-emoji">💻</div>
+      <div class="tool-row-info">
+        <div class="tool-row-name">Bitauth IDE</div>
+        <div class="tool-row-desc">The professional BCH script authoring environment for writing, testing, and debugging complex BCH locking scripts and smart contracts.</div>
+      </div>
+      <a class="card-link" href="https://ide.bitauth.com" target="_blank">↗ ide.bitauth.com</a>
+    </div>
+    <div class="tool-row">
+      <div class="card-emoji">🏪</div>
+      <div class="tool-row-info">
+        <div class="tool-row-name">Where To Spend BCH — Merchant Map</div>
+        <div class="tool-row-desc">Find businesses and merchants worldwide that accept Bitcoin Cash payments.</div>
+      </div>
+      <a class="card-link" href="https://minisatoshi.cash/merchants" target="_blank">↗ BCH Merchants</a>
+    </div>
+    <div class="tool-row">
+      <div class="card-emoji">🎟️</div>
+      <div class="tool-row-info">
+        <div class="tool-row-name">CashStamps</div>
+        <div class="tool-row-desc">Print physical BCH paper wallets as stamps — load them with Bitcoin Cash and hand them out in the real world. A powerful onboarding and tipping tool for spreading BCH adoption face-to-face.</div>
+      </div>
+      <div class="card-tags" style="flex-shrink:0">
+        <span class="tag green">Onboarding</span>
+        <span class="tag">Paper Wallet</span>
+        <span class="badge badge-beginner">Fun Tool</span>
+      </div>
+      <a class="card-link" href="https://stamps.cash" target="_blank">↗ stamps.cash</a>
+    </div>
+    <div class="tool-row">
+      <div class="card-emoji">🗺️</div>
+      <div class="tool-row-info">
+        <div class="tool-row-name">PurelyPeer</div>
+        <div class="tool-row-desc">A noncustodial BCH wallet + gamified quest app. Find hidden BCH cashdrops on a map, create location-based quests, and fund merchant campaigns — a revolutionary tool for real-world BCH adoption and onboarding. Partnered with Paytaca merchants.</div>
+      </div>
+      <div class="card-tags" style="flex-shrink:0">
+        <span class="tag green">Onboarding</span>
+        <span class="tag green">Wallet</span>
+        <span class="tag">Android</span>
+        <span class="tag">iOS</span>
+        <span class="badge badge-new">Unique</span>
+      </div>
+      <a class="card-link" href="https://purelypeer.cash" target="_blank">↗ purelypeer.cash</a>
+    </div>
+    <div class="tool-row">
+      <div class="card-emoji">💳</div>
+      <div class="tool-row-info">
+        <div class="tool-row-name">BCHPay.cash — Payment Gateway</div>
+        <div class="tool-row-desc">A Bitcoin Cash payment gateway for businesses, merchants, and online services. Easily integrate BCH checkout into any website or app — simple setup, non-custodial, and BCH-native. Ideal for merchants wanting fast, cheap payments without intermediaries.</div>
+      </div>
+      <div class="card-tags" style="flex-shrink:0">
+        <span class="tag green">Merchant</span>
+        <span class="tag green">Payments</span>
+        <span class="tag">Non-Custodial</span>
+        <span class="tag">Easy Integration</span>
+      </div>
+      <a class="card-link" href="https://bchpay.cash" target="_blank">↗ bchpay.cash</a>
+    </div>
+    <div class="tool-row">
+      <div class="card-emoji">🤖</div>
+      <div class="tool-row-info">
+        <div class="tool-row-name">AskJSON — BCH AI Assistant</div>
+        <div class="tool-row-desc">An AI powered by 971+ technical BCH Q&A pairs. Ask anything about Bitcoin Cash — protocol, CashTokens, scripting, DeFi, wallets. The fastest way to get accurate BCH answers without digging through docs.</div>
+      </div>
+      <div class="card-tags" style="flex-shrink:0">
+        <span class="tag green">AI</span>
+        <span class="tag green">BCH Only</span>
+        <span class="tag">971+ Q&A</span>
+        <span class="badge badge-new">Unique</span>
+      </div>
+      <a class="card-link" href="https://askjson.layer1.cash" target="_blank">↗ askjson.layer1.cash</a>
+    </div>
+    <div class="tool-row">
+      <div class="card-emoji">🎯</div>
+      <div class="tool-row-info">
+        <div class="tool-row-name">BQuest — Social Identity on BCH</div>
+        <div class="tool-row-desc">Turn your social media handle into a Bitcoin Cash identity. Influencers and projects fund onboarding pools and reward followers instantly with BCH — a viral, non-custodial growth engine for BCH adoption.</div>
+      </div>
+      <div class="card-tags" style="flex-shrink:0">
+        <span class="tag green">Onboarding</span>
+        <span class="tag green">CashTokens</span>
+        <span class="tag">Non-Custodial</span>
+        <span class="badge badge-new">New</span>
+      </div>
+      <a class="card-link" href="https://bquest.cash" target="_blank">↗ bquest.cash</a>
+    </div>
+    <div class="tool-row">
+      <div class="card-emoji">💎</div>
+      <div class="tool-row-info">
+        <div class="tool-row-name">1KBCH — BCH Independent Venture</div>
+        <div class="tool-row-desc">Six integrated BCH engines in one hub: NOX (on-chain intelligence), NEWS (market updates), LEARN (education), MAP (merchant directory), WEALTH (portfolio tracker), and APE CLUB (NFT). Built around BCH micropayments.</div>
+      </div>
+      <div class="card-tags" style="flex-shrink:0">
+        <span class="tag green">Dashboard</span>
+        <span class="tag">NFTs</span>
+        <span class="tag">Merchants</span>
+        <span class="tag">Education</span>
+      </div>
+      <a class="card-link" href="https://1kbch.com" target="_blank">↗ 1kbch.com</a>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ADDRESS CONVERTER + QR -->
+<div class="section" id="converter">
+  <div class="section-header">
+    <div class="section-icon">🔄</div>
+    <div>
+      <div class="section-title">Address & QR Tools</div>
+      <div class="section-sub">Convert BCH addresses and generate QR codes directly in your browser</div>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(min(440px, 100%), 1fr));gap:1.5rem;width:100%">
+
+  <!-- CONVERTER -->
+  <div class="converter-box">
+    <h3>🔄 Address Format Converter</h3>
+    <div class="conv-label">Enter a BCH address (Legacy or CashAddr format)</div>
+    <input class="conv-input" id="conv-input" type="text" placeholder="1A1zP1eP5QGefi2DMPTfTL5SLmv7Divf... or bitcoincash:q..." />
+    <div class="conv-cols">
+      <div>
+        <div class="conv-label">CashAddr Format</div>
+        <div class="conv-result" id="conv-cashaddr"></div>
+      </div>
+      <div>
+        <div class="conv-label">Legacy Format</div>
+        <div class="conv-result" id="conv-legacy"></div>
+      </div>
+    </div>
+    <button class="conv-btn" onclick="convertAddress()">Convert Address</button>
+    <div style="margin-top:0.75rem; font-size:0.75rem; color:var(--bch-muted);">
+      💡 Or use the official converter:
+      <a href="https://cashaddr.bitcoincash.org" target="_blank" style="color:var(--bch-green);">cashaddr.bitcoincash.org</a>
+      · <a href="https://www.bitcoin.com/tools/cash-address-converter/" target="_blank" style="color:var(--bch-green);">bitcoin.com converter</a>
+    </div>
+  </div>
+
+  <!-- QR GENERATOR -->
+  <div class="qr-box">
+    <h3>📲 QR Code Generator</h3>
+    <div class="conv-label">BCH Address or Payment URI</div>
+    <input class="conv-input" id="qr-input" type="text" placeholder="bitcoincash:qrtv37u522gz8a5lezfqk5vukly93cu7gc8tn09040" />
+    <div style="margin-top:0.5rem;">
+      <div class="conv-label">Amount (optional, in BCH)</div>
+      <input class="conv-input" id="qr-amount" type="number" step="0.00000001" min="0" placeholder="0.001" />
+    </div>
+    <button class="conv-btn" onclick="generateQR()">Generate QR Code</button>
+    <div id="qr-output"></div>
+    <div id="qr-dl" style="display:none;margin-top:0.5rem;text-align:center;">
+      <button onclick="downloadQR()" style="background:transparent;border:1px solid var(--bch-border);color:var(--bch-muted);padding:0.4rem 1rem;border-radius:8px;cursor:pointer;font-size:0.8rem;transition:all 0.2s;" onmouseover="this.style.borderColor='var(--bch-green)';this.style.color='var(--bch-green)'" onmouseout="this.style.borderColor='var(--bch-border)';this.style.color='var(--bch-muted)'">⬇ Download QR PNG</button>
+    </div>
+  </div>
+
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- EXCHANGES & ON-RAMPS -->
+<div class="section" id="exchanges">
+  <div class="section-header">
+    <div class="section-icon">💱</div>
+    <div>
+      <div class="section-title">Get BCH — Exchanges & On-Ramps</div>
+      <div class="section-sub">Buy and sell Bitcoin Cash on major platforms</div>
+    </div>
+  </div>
+  <div class="card-grid">
+
+    <div class="card">
+      <div class="card-emoji" style="font-size:1.2rem;width:auto;height:auto;padding:0.5rem 1rem;background:var(--bch-mid);border:1px solid var(--bch-border);border-radius:10px;display:inline-flex;align-items:center;font-weight:700;color:#fff;">Coinbase</div>
+      <div class="card-desc">One of the largest, most beginner-friendly exchanges. Easy BCH purchase with bank or card.</div>
+      <a class="card-link" href="https://coinbase.com" target="_blank">↗ coinbase.com</a>
+    </div>
+
+    <div class="card">
+      <div class="card-emoji" style="font-size:1.2rem;width:auto;height:auto;padding:0.5rem 1rem;background:var(--bch-mid);border:1px solid var(--bch-border);border-radius:10px;display:inline-flex;align-items:center;font-weight:700;color:#fff;">Binance</div>
+      <div class="card-desc">World's largest exchange by volume. BCH trading pairs available. Supports BCH withdrawals.</div>
+      <a class="card-link" href="https://binance.com" target="_blank">↗ binance.com</a>
+    </div>
+
+    <div class="card">
+      <div class="card-emoji" style="font-size:1.2rem;width:auto;height:auto;padding:0.5rem 1rem;background:var(--bch-mid);border:1px solid var(--bch-border);border-radius:10px;display:inline-flex;align-items:center;font-weight:700;color:#fff;">Kraken</div>
+      <div class="card-desc">Regulated, US-based exchange with BCH trading. Strong reputation for security and compliance.</div>
+      <a class="card-link" href="https://kraken.com" target="_blank">↗ kraken.com</a>
+    </div>
+
+    <div class="card">
+      <div class="card-emoji" style="font-size:1.2rem;width:auto;height:auto;padding:0.5rem 1rem;background:var(--bch-mid);border:1px solid var(--bch-border);border-radius:10px;display:inline-flex;align-items:center;font-weight:700;color:#fff;">Bitcoin.com</div>
+      <div class="card-desc">Buy BCH directly via the Bitcoin.com Exchange with credit/debit cards. Integrates with their wallet.</div>
+      <a class="card-link" href="https://exchange.bitcoin.com" target="_blank">↗ exchange.bitcoin.com</a>
+    </div>
+
+    <div class="card">
+      <div class="card-emoji">🤝</div>
+      <div class="card-info">
+        <div class="card-name">Zapit P2P Market</div>
+        <div class="card-type">Peer-to-Peer · No KYC</div>
+      </div>
+      <div class="card-desc">Built-in P2P fiat-to-BCH market in the Zapit wallet. Buy BCH directly from other users with local fiat currencies — minimal KYC options.</div>
+      <a class="card-link" href="https://www.zapit.io" target="_blank">↗ zapit.io</a>
+    </div>
+
+    <div class="card">
+      <div class="card-emoji">🛒</div>
+      <div class="card-info">
+        <div class="card-name">Bitgree</div>
+        <div class="card-type">BCH Shopping</div>
+      </div>
+      <div class="card-desc">Shop on Amazon and other major retailers using Bitcoin Cash. Spend your BCH on everyday products.</div>
+      <a class="card-link" href="https://bitgree.com" target="_blank">↗ bitgree.com</a>
+    </div>
+
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- PRIVACY -->
+<div class="section" id="privacy">
+  <div class="section-header">
+    <div class="section-icon">🔒</div>
+    <div>
+      <div class="section-title">Privacy Tools</div>
+      <div class="section-sub">Enhance your financial privacy on Bitcoin Cash</div>
+    </div>
+  </div>
+  <div class="card-grid">
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-emoji">🌀</div>
+        <div class="card-info">
+          <div class="card-name">CashFusion</div>
+          <div class="card-type">Privacy · Coin Mixing</div>
+        </div>
+      </div>
+      <div class="card-desc">Decentralized, trustless coin mixing for Bitcoin Cash built into Electron Cash. Combines multiple transaction inputs to obscure the transaction graph without counterparty risk.</div>
+      <div class="card-tags">
+        <span class="tag">Electron Cash</span>
+        <span class="tag">Non-custodial</span>
+      </div>
+      <div class="card-links">
+        <a class="card-link" href="https://cashfusion.org" target="_blank">↗ cashfusion.org</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-emoji">🥷</div>
+        <div class="card-info">
+          <div class="card-name">Best BCH Privacy Guide</div>
+          <div class="card-type">Educational Resource</div>
+        </div>
+      </div>
+      <div class="card-desc">Comprehensive guide to maintaining financial privacy when using Bitcoin Cash — from wallet selection to spending practices. UTXO management, CashFusion, and more.</div>
+      <div class="card-links">
+        <a class="card-link" href="https://bitcoiniscash.org/bitcoin-cash-privacy/" target="_blank">↗ Privacy Guide</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- COMMUNITY & MEDIA -->
+<div class="section" id="community">
+  <div class="section-header">
+    <div class="section-icon">🌍</div>
+    <div>
+      <div class="section-title">Community & Media</div>
+      <div class="section-sub">Stay connected, informed, and involved</div>
+    </div>
+  </div>
+  <div class="tool-row-list">
+    <div class="tool-row">
+      <div class="card-emoji">🎙️</div>
+      <div class="tool-row-info">
+        <div class="tool-row-name">Bitcoin Cash Podcast</div>
+        <div class="tool-row-desc">Weekly podcast featuring guests, BCH news, developer updates, and deep dives into the ecosystem.</div>
+      </div>
+      <a class="card-link" href="https://bitcoincashpodcast.com" target="_blank">↗ Visit</a>
+    </div>
+    <div class="tool-row">
+      <div class="card-emoji">🏛️</div>
+      <div class="tool-row-info">
+        <div class="tool-row-name">Bitcoin Cash Foundation</div>
+        <div class="tool-row-desc">Community-backed organization driving BCH outreach, adoption campaigns, and developer grants.</div>
+      </div>
+      <a class="card-link" href="https://bitcoincashfoundation.org" target="_blank">↗ Visit</a>
+    </div>
+    <div class="tool-row">
+      <div class="card-emoji">💬</div>
+      <div class="tool-row-info">
+        <div class="tool-row-name">r/BitcoinCash (Reddit)</div>
+        <div class="tool-row-desc">Main BCH subreddit for news, discussion, and community help.</div>
+      </div>
+      <a class="card-link" href="https://reddit.com/r/bitcoincash" target="_blank">↗ Visit</a>
+    </div>
+    <div class="tool-row">
+      <div class="card-emoji">✍️</div>
+      <div class="tool-row-info">
+        <div class="tool-row-name">Read.cash</div>
+        <div class="tool-row-desc">Decentralized blogging platform where writers earn BCH tips. Rich BCH community content.</div>
+      </div>
+      <a class="card-link" href="https://read.cash" target="_blank">↗ read.cash</a>
+    </div>
+    <div class="tool-row">
+      <div class="card-emoji">✈️</div>
+      <div class="tool-row-info">
+        <div class="tool-row-name">Bitcoin Cash — Community Telegram</div>
+        <div class="tool-row-desc">A large community-run Bitcoin Cash Telegram group. BCH has no official channels — it's decentralized. This is one of the most active spaces to ask questions and connect with users and developers.</div>
+      </div>
+      <div class="card-tags" style="flex-shrink:0">
+        <span class="tag green">Active</span>
+        <span class="tag">Community</span>
+        <span class="tag">Beginner Friendly</span>
+      </div>
+      <a class="card-link" href="https://t.me/bitcoincash" target="_blank">↗ t.me/bitcoincash</a>
+    </div>
+    <div class="tool-row">
+      <div class="card-emoji">🚀</div>
+      <div class="tool-row-info">
+        <div class="tool-row-name">BCH-1 Hackcelerator</div>
+        <div class="tool-row-desc">The leading Bitcoin Cash builder accelerator. Hosts hackathons, funds BCH projects, tracks the full ecosystem via BCH Atlas (333+ crowdfunding campaigns mapped), and supports new teams building on BCH.</div>
+      </div>
+      <div class="card-tags" style="flex-shrink:0">
+        <span class="tag green">Builders</span>
+        <span class="tag">Grants</span>
+        <span class="tag">Ecosystem</span>
+        <span class="badge badge-new">Active</span>
+      </div>
+      <a class="card-link" href="https://bch-1.org" target="_blank">↗ bch-1.org</a>
+    </div>
+    <div class="tool-row">
+      <div class="card-emoji">🔬</div>
+      <div class="tool-row-info">
+        <div class="tool-row-name">RealBitcoin.Cash Forum</div>
+        <div class="tool-row-desc">Open-source BCH discussion forum similar to Reddit for longer-form community threads.</div>
+      </div>
+      <a class="card-link" href="https://realbitcoin.cash" target="_blank">↗ Visit</a>
+    </div>
+    <div class="tool-row">
+      <div class="card-emoji">🟣</div>
+      <div class="tool-row-info">
+        <div class="tool-row-name">BCHnostr.com</div>
+        <div class="tool-row-desc">Bitcoin Cash meets Nostr — a censorship-resistant social layer for BCH. Connect with the BCH community on the decentralized Nostr protocol with native BCH tipping.</div>
+      </div>
+      <div class="card-tags" style="flex-shrink:0">
+        <span class="tag green">Nostr</span>
+        <span class="tag">Decentralized</span>
+      </div>
+      <a class="card-link" href="https://bchnostr.com" target="_blank">↗ bchnostr.com</a>
+    </div>
+    <div class="tool-row">
+      <div class="card-emoji">📝</div>
+      <div class="tool-row-info">
+        <div class="tool-row-name">Memo.cash</div>
+        <div class="tool-row-desc">Bitcoin Cash on-chain social network. Post messages, tip BCH, create a censorship-resistant profile, and browse topics — all recorded permanently on the BCH blockchain. Available on Android and iOS.</div>
+      </div>
+      <div class="card-tags" style="flex-shrink:0">
+        <span class="tag green">On-chain</span>
+        <span class="tag">Social</span>
+        <span class="tag">Android</span>
+        <span class="tag">iOS</span>
+      </div>
+      <a class="card-link" href="https://memo.cash" target="_blank">↗ memo.cash</a>
+    </div>
+    <div class="tool-row">
+      <div class="card-emoji">🎙️</div>
+      <div class="tool-row-info">
+        <div class="tool-row-name">La Economía P2P 🇪🇸</div>
+        <div class="tool-row-desc">Spanish-language podcast dedicated to Bitcoin Cash, peer-to-peer economy, freedom, and privacy. Hosted by Ian Blas (co-founder of BCH Argentina) and Leo Beltrán (founder of BCH Academy). Building the parallel economy.</div>
+      </div>
+      <div class="card-tags" style="flex-shrink:0">
+        <span class="tag green">Español</span>
+        <span class="tag">Podcast</span>
+        <span class="tag">Spotify</span>
+        <span class="tag">YouTube</span>
+      </div>
+      <div class="card-links" style="flex-shrink:0;display:flex;gap:0.5rem;">
+        <a class="card-link" href="https://laeconomiap2p.com" target="_blank">↗ laeconomiap2p.com</a>
+      </div>
+    </div>
+    <div class="tool-row">
+      <div class="card-emoji">🎥</div>
+      <div class="tool-row-info">
+        <div class="tool-row-name">Almuerzo No 🇪🇸</div>
+        <div class="tool-row-desc">Spanish-language Bitcoin Cash YouTube channel covering BCH news, education, and ecosystem updates. A key resource for the Spanish-speaking BCH community.</div>
+      </div>
+      <div class="card-tags" style="flex-shrink:0">
+        <span class="tag green">Español</span>
+        <span class="tag">YouTube</span>
+        <span class="tag">Education</span>
+      </div>
+      <a class="card-link" href="https://www.youtube.com/@AlmuerzoNo" target="_blank">↗ YouTube Channel</a>
+    </div>
+    <div class="tool-row">
+      <div class="card-emoji">📰</div>
+      <div class="tool-row-info">
+        <div class="tool-row-name">ElBitcoin.org 🇪🇸</div>
+        <div class="tool-row-desc">The leading Spanish-language Bitcoin Cash blog and media outlet. In-depth articles, analysis, and education about BCH, peer-to-peer economics, and the failure of BTC block size restriction — written for the Spanish-speaking world.</div>
+      </div>
+      <div class="card-tags" style="flex-shrink:0">
+        <span class="tag green">Español</span>
+        <span class="tag">Blog</span>
+        <span class="tag">Education</span>
+      </div>
+      <a class="card-link" href="https://elbitcoin.org" target="_blank">↗ elbitcoin.org</a>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- BCH GLOBAL NETWORK -->
+<div class="section" id="xaccounts">
+  <div class="section-header">
+    <div class="section-icon">🌍</div>
+    <div>
+      <div class="section-title">BCH Global Network</div>
+      <div class="section-sub">Community leaders, adoption champions & builders driving Bitcoin Cash worldwide</div>
+    </div>
+  </div>
+
+  <!-- COMMUNITY AMBASSADORS -->
+  <div class="sub-label" style="margin-top:0.5rem;">🤝 Community Leaders & Adoption Champions</div>
+  <div class="x-note" style="margin-top:0; margin-bottom:1.25rem;">
+    ℹ️ <span>BCH is decentralized</span> — these are community-verified individuals actively organizing meetups, onboarding merchants, and driving real-world BCH adoption in their countries. Want to be listed? Reach out via the donation address.
+  </div>
+
+  <div class="ambassador-grid" style="margin-bottom:2rem;">
+
+    <div class="ambassador-card">
+      <div class="ambassador-top">
+        <div class="ambassador-avatar">🇲🇿</div>
+        <div class="ambassador-meta">
+          <div class="ambassador-name">Alberto Dionisio</div>
+          <div class="ambassador-handle">@alberdioni8406_</div>
+          <div class="ambassador-country">📍 Mozambique</div>
+        </div>
+      </div>
+      <div class="ambassador-roles">
+        <span class="ambassador-role primary">Meetup Organizer</span>
+        <span class="ambassador-role">Community Builder</span>
+        <span class="ambassador-role">Writer · 185k+ views</span>
+      </div>
+      <div class="ambassador-desc">Organizes BCH adoption initiatives, merchant onboarding, educational campaigns and community meetups across Mozambique. Author of 120+ BCH articles in 2025 on Read.cash. Creator of CashCompass.</div>
+      <a class="ambassador-link" href="https://x.com/alberdioni8406_" target="_blank">𝕏 Follow @alberdioni8406_</a>
+    </div>
+
+    <div class="ambassador-card">
+      <div class="ambassador-top">
+        <div class="ambassador-avatar">🇳🇬</div>
+        <div class="ambassador-meta">
+          <div class="ambassador-name">Nurain</div>
+          <div class="ambassador-handle">@Nurain_Dev</div>
+          <div class="ambassador-country">📍 Nigeria</div>
+        </div>
+      </div>
+      <div class="ambassador-roles">
+        <span class="ambassador-role primary">Meetup Organizer</span>
+        <span class="ambassador-role">BCH Educator</span>
+        <span class="ambassador-role">Community Builder</span>
+      </div>
+      <div class="ambassador-desc">Leading BCH education and community-building efforts in Nigeria. Organizes meetups, introduces newcomers to Bitcoin Cash, and advocates for BCH adoption across West Africa.</div>
+      <a class="ambassador-link" href="https://x.com/Nurain_Dev" target="_blank">𝕏 Follow @Nurain_Dev</a>
+    </div>
+
+    <div class="ambassador-card">
+      <div class="ambassador-top">
+        <div class="ambassador-avatar">🇨🇦</div>
+        <div class="ambassador-meta">
+          <div class="ambassador-name">Jerry Lightswarm</div>
+          <div class="ambassador-handle">@Lightswarm</div>
+          <div class="ambassador-country">📍 Toronto, Canada</div>
+        </div>
+      </div>
+      <div class="ambassador-roles">
+        <span class="ambassador-role primary">Meetup Organizer</span>
+        <span class="ambassador-role">Community Leader</span>
+        <span class="ambassador-role">BCH Advocate</span>
+      </div>
+      <div class="ambassador-desc">Organizes Bitcoin Cash meetups in Toronto and across Canada. Community leader connecting BCH users, building local networks, and advocating for peer-to-peer cash in North America.</div>
+      <a class="ambassador-link" href="https://x.com/Lightswarm" target="_blank">𝕏 Follow @Lightswarm</a>
+    </div>
+
+    <div class="ambassador-card">
+      <div class="ambassador-top">
+        <div class="ambassador-avatar">🇸🇸</div>
+        <div class="ambassador-meta">
+          <div class="ambassador-name">Emmanuel Lobijo</div>
+          <div class="ambassador-handle">@Elobijo</div>
+          <div class="ambassador-country">📍 Juba, South Sudan</div>
+        </div>
+      </div>
+      <div class="ambassador-roles">
+        <span class="ambassador-role primary">Meetup Organizer</span>
+        <span class="ambassador-role">eatBCH SS Manager</span>
+        <span class="ambassador-role">Humanitarian</span>
+      </div>
+      <div class="ambassador-desc">Manager of eatBCH South Sudan — using Bitcoin Cash donations to feed hundreds of displaced people and children across South Sudan. Invited to UN Climate Summit. Entrepreneur and BCH adoption pioneer in East Africa.</div>
+      <a class="ambassador-link" href="https://x.com/Elobijo" target="_blank">𝕏 Follow @Elobijo</a>
+    </div>
+
+    <div class="ambassador-card">
+      <div class="ambassador-top">
+        <div class="ambassador-avatar">🇦🇷</div>
+        <div class="ambassador-meta">
+          <div class="ambassador-name">Bitcoin Cash Argentina</div>
+          <div class="ambassador-handle">@BCHArgentina</div>
+          <div class="ambassador-country">📍 Buenos Aires, Argentina</div>
+        </div>
+      </div>
+      <div class="ambassador-roles">
+        <span class="ambassador-role primary">Meetup Organizer</span>
+        <span class="ambassador-role">Community Growth</span>
+        <span class="ambassador-role">Merchant Onboarding</span>
+      </div>
+      <div class="ambassador-desc">Argentina's most active BCH community chapter. Runs the Club BCH Argentina with regular meetups, merchant onboarding, Wikipedia updates in Spanish, and an international BCH merchant map. Building the parallel economy in Argentina.</div>
+      <a class="ambassador-link" href="https://x.com/BCHArgentina" target="_blank">𝕏 Follow @BCHArgentina</a>
+    </div>
+
+    <div class="ambassador-card">
+      <div class="ambassador-top">
+        <div class="ambassador-avatar">🇵🇭</div>
+        <div class="ambassador-meta">
+          <div class="ambassador-name">Paytaca Philippines</div>
+          <div class="ambassador-handle">@Paytaca</div>
+          <div class="ambassador-country">📍 Cebu, Philippines</div>
+        </div>
+      </div>
+      <div class="ambassador-roles">
+        <span class="ambassador-role primary">Meetup Organizer</span>
+        <span class="ambassador-role">Merchant Adoption Leader</span>
+        <span class="ambassador-role">BCH Wallet Dev</span>
+      </div>
+      <div class="ambassador-desc">Cebu-based team building the most feature-complete BCH wallet. Leading merchant BCH adoption in the Philippines through POS terminals, the Paytaca merchant map, and community meetups with local businesses.</div>
+      <a class="ambassador-link" href="https://x.com/Paytaca" target="_blank">𝕏 Follow @Paytaca</a>
+    </div>
+
+    <div class="ambassador-card">
+      <div class="ambassador-top">
+        <div class="ambassador-avatar">🇹🇼</div>
+        <div class="ambassador-meta">
+          <div class="ambassador-name">Gordon Lin</div>
+          <div class="ambassador-handle">@twbitcoincash</div>
+          <div class="ambassador-country">📍 Taiwan</div>
+        </div>
+      </div>
+      <div class="ambassador-roles">
+        <span class="ambassador-role primary">Community Leader</span>
+        <span class="ambassador-role">BCH Advocate</span>
+        <span class="ambassador-role">Educator</span>
+      </div>
+      <div class="ambassador-desc">Leading Bitcoin Cash community builder in Taiwan. Connects Chinese-speaking BCH users, educates local communities about peer-to-peer cash, and represents BCH across East Asia.</div>
+      <a class="ambassador-link" href="https://x.com/twbitcoincash" target="_blank">𝕏 Follow @twbitcoincash</a>
+    </div>
+
+    <div class="ambassador-card">
+      <div class="ambassador-top">
+        <div class="ambassador-avatar">🇺🇸</div>
+        <div class="ambassador-meta">
+          <div class="ambassador-name">Steve Thurmond</div>
+          <div class="ambassador-handle">@SteveThurmond</div>
+          <div class="ambassador-country">📍 United States</div>
+        </div>
+      </div>
+      <div class="ambassador-roles">
+        <span class="ambassador-role primary">BCH Advocate</span>
+        <span class="ambassador-role">Educator</span>
+        <span class="ambassador-role">Community Voice</span>
+      </div>
+      <div class="ambassador-desc">Active BCH educator and community voice in the United States. Consistently advocates for Bitcoin Cash adoption, engages newcomers, and contributes to community discussions across social media.</div>
+      <a class="ambassador-link" href="https://x.com/SteveThurmond" target="_blank">𝕏 Follow @SteveThurmond</a>
+    </div>
+
+    <div class="ambassador-card">
+      <div class="ambassador-top">
+        <div class="ambassador-avatar">🇺🇸</div>
+        <div class="ambassador-meta">
+          <div class="ambassador-name">00tatts</div>
+          <div class="ambassador-handle">@00tatts</div>
+          <div class="ambassador-country">📍 Las Vegas, USA</div>
+        </div>
+      </div>
+      <div class="ambassador-roles">
+        <span class="ambassador-role primary">IRL Onboarding</span>
+        <span class="ambassador-role">Las Vegas Crypto Club</span>
+        <span class="ambassador-role">Culture Builder</span>
+      </div>
+      <div class="ambassador-desc">Unique BCH adoption through tattoo artistry and IRL culture. Runs the Las Vegas Crypto Club, bringing BCH to real-world events, venues, and communities through creative engagement.</div>
+      <a class="ambassador-link" href="https://x.com/00tatts" target="_blank">𝕏 Follow @00tatts</a>
+    </div>
+
+  </div>
+
+  <!-- DEVELOPERS ON X -->
+  <div class="sub-label">🧑‍💻 Developers & Protocol Builders on 𝕏</div>
+  <div class="x-grid" style="margin-bottom:1.5rem;">
+    <a class="x-card" href="https://x.com/bitjson" target="_blank">
+      <div class="x-avatar">⚙️</div>
+      <div class="x-info">
+        <div class="x-handle">@bitjson</div>
+        <div class="x-desc">CashTokens, CashScript, Bitauth IDE</div>
+      </div>
+      <span class="x-badge x-badge-dev">Dev</span>
+    </a>
+    <a class="x-card" href="https://x.com/cculianu" target="_blank">
+      <div class="x-avatar">⚡</div>
+      <div class="x-info">
+        <div class="x-handle">@cculianu</div>
+        <div class="x-desc">Fulcrum SPV · Electron Cash · 25k posts</div>
+      </div>
+      <span class="x-badge x-badge-dev">Dev</span>
+    </a>
+    <a class="x-card" href="https://x.com/monsterbitar" target="_blank">
+      <div class="x-avatar">🦾</div>
+      <div class="x-info">
+        <div class="x-handle">@monsterbitar</div>
+        <div class="x-desc">Electron Cash contributor & BCH core dev</div>
+      </div>
+      <span class="x-badge x-badge-dev">Dev</span>
+    </a>
+    <a class="x-card" href="https://x.com/EmergentReasons" target="_blank">
+      <div class="x-avatar">🌱</div>
+      <div class="x-info">
+        <div class="x-handle">@EmergentReasons</div>
+        <div class="x-desc">BCH ecosystem dev & funding contributor</div>
+      </div>
+      <span class="x-badge x-badge-dev">Dev</span>
+    </a>
+    <a class="x-card" href="https://x.com/GeneralProtocols" target="_blank">
+      <div class="x-avatar">🏛️</div>
+      <div class="x-info">
+        <div class="x-handle">@GeneralProtocols</div>
+        <div class="x-desc">AnyHedge, BCH Bull, DeFi research</div>
+      </div>
+      <span class="x-badge x-badge-dev">Dev</span>
+    </a>
+    <a class="x-card" href="https://x.com/mainnet_pat" target="_blank">
+      <div class="x-avatar">🔧</div>
+      <div class="x-info">
+        <div class="x-handle">@mainnet_pat</div>
+        <div class="x-desc">Mainnet.cash, BCH tooling</div>
+      </div>
+      <span class="x-badge x-badge-dev">Dev</span>
+    </a>
+    <a class="x-card" href="https://x.com/CauldronDEX" target="_blank">
+      <div class="x-avatar">🧪</div>
+      <div class="x-info">
+        <div class="x-handle">@CauldronDEX</div>
+        <div class="x-desc">Cauldron AMM DEX on BCH</div>
+      </div>
+      <span class="x-badge x-badge-project">Project</span>
+    </a>
+    <a class="x-card" href="https://x.com/bch_1org" target="_blank">
+      <div class="x-avatar">🚀</div>
+      <div class="x-info">
+        <div class="x-handle">@bch_1org</div>
+        <div class="x-desc">BCH-1 Hackcelerator & Atlas</div>
+      </div>
+      <span class="x-badge x-badge-project">Project</span>
+    </a>
+  </div>
+
+  <!-- MEDIA ON X -->
+  <div class="sub-label">📣 Media, Content & Analysts on 𝕏</div>
+  <div class="x-grid">
+    <a class="x-card" href="https://x.com/TheBCHPodcast" target="_blank">
+      <div class="x-avatar">🎙️</div>
+      <div class="x-info">
+        <div class="x-handle">@TheBCHPodcast</div>
+        <div class="x-desc">Weekly BCH podcast · BCH Bullet newsletter</div>
+      </div>
+      <span class="x-badge x-badge-news">Media</span>
+    </a>
+    <a class="x-card" href="https://x.com/BitcoinCashOG" target="_blank">
+      <div class="x-avatar">🦁</div>
+      <div class="x-info">
+        <div class="x-handle">@BitcoinCashOG</div>
+        <div class="x-desc">400k+ impressions, BCH marketing on X</div>
+      </div>
+      <span class="x-badge x-badge-community">Community</span>
+    </a>
+    <a class="x-card" href="https://x.com/elBitcoin" target="_blank">
+      <div class="x-avatar">📰</div>
+      <div class="x-info">
+        <div class="x-handle">@elBitcoin</div>
+        <div class="x-desc">Spanish BCH media · elbitcoin.org</div>
+      </div>
+      <span class="x-badge x-badge-news">Media 🇪🇸</span>
+    </a>
+    <a class="x-card" href="https://x.com/bchautist" target="_blank">
+      <div class="x-avatar">📊</div>
+      <div class="x-info">
+        <div class="x-handle">@bchautist</div>
+        <div class="x-desc">On-chain analysis, BCH metrics research</div>
+      </div>
+      <span class="x-badge x-badge-news">Analysis</span>
+    </a>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- BCH GLOBAL ACTIVITIES -->
+<div class="section" id="activities">
+  <div class="section-header">
+    <div class="section-icon">📍</div>
+    <div>
+      <div class="section-title">BCH Around The World</div>
+      <div class="section-sub">Ongoing meetups, merchant campaigns, educational workshops & adoption events globally</div>
+    </div>
+  </div>
+
+  <div class="activity-grid">
+
+    <div class="activity-card">
+      <div class="activity-header">
+        <span class="activity-flag">🇦🇷</span>
+        <span class="activity-type type-meetup">Meetup</span>
+      </div>
+      <div class="activity-title">Club BCH Argentina — Monthly Meetups</div>
+      <div class="activity-meta">
+        <span>📍 Buenos Aires, Argentina</span>
+        <span>👤 @BCHArgentina</span>
+        <span>🔁 Monthly</span>
+      </div>
+      <div class="activity-desc">Regular evening gatherings in Villa Urquiza featuring BCH talks, merchant demos, and community networking. Speaker sessions cover BCH adoption strategies, DeFi, and global BCH use cases. Open to all.</div>
+      <a class="activity-link" href="https://x.com/BCHArgentina" target="_blank">↗ Follow for dates</a>
+    </div>
+
+    <div class="activity-card">
+      <div class="activity-header">
+        <span class="activity-flag">🇵🇭</span>
+        <span class="activity-type type-merchant">Merchant</span>
+      </div>
+      <div class="activity-title">Paytaca Merchant Onboarding — Philippines</div>
+      <div class="activity-meta">
+        <span>📍 Cebu, Philippines</span>
+        <span>👤 @Paytaca</span>
+        <span>🔁 Ongoing</span>
+      </div>
+      <div class="activity-desc">Paytaca's team actively onboards local merchants in Cebu and across the Philippines to accept BCH payments via POS terminals. Integrated with the Paytaca merchant map and the BCH Argentina international map.</div>
+      <a class="activity-link" href="https://www.paytaca.com" target="_blank">↗ paytaca.com</a>
+    </div>
+
+    <div class="activity-card">
+      <div class="activity-header">
+        <span class="activity-flag">🇸🇸</span>
+        <span class="activity-type type-charity">Charity</span>
+      </div>
+      <div class="activity-title">eatBCH South Sudan — Feeding With BCH</div>
+      <div class="activity-meta">
+        <span>📍 Juba, South Sudan</span>
+        <span>👤 @Elobijo</span>
+        <span>🔁 Ongoing</span>
+      </div>
+      <div class="activity-desc">Using Bitcoin Cash donations from around the world to buy and distribute food to displaced people and children across South Sudan. A living proof that BCH works as borderless humanitarian cash.</div>
+      <a class="activity-link" href="https://eatbch.org/south-sudan" target="_blank">↗ eatbch.org</a>
+    </div>
+
+    <div class="activity-card">
+      <div class="activity-header">
+        <span class="activity-flag">🇲🇿</span>
+        <span class="activity-type type-meetup">Meetup</span>
+      </div>
+      <div class="activity-title">BCH Mozambique Community Meetups</div>
+      <div class="activity-meta">
+        <span>📍 Mozambique</span>
+        <span>👤 @alberdioni8406_</span>
+        <span>🔁 Ongoing</span>
+      </div>
+      <div class="activity-desc">Community meetups, merchant onboarding campaigns, and educational initiatives across Mozambique organized by Alberto Dionisio. Introducing BCH as a financial tool for the unbanked in Southern Africa.</div>
+      <a class="activity-link" href="https://x.com/alberdioni8406_" target="_blank">↗ Follow for updates</a>
+    </div>
+
+    <div class="activity-card">
+      <div class="activity-header">
+        <span class="activity-flag">🇨🇦</span>
+        <span class="activity-type type-meetup">Meetup</span>
+      </div>
+      <div class="activity-title">BCH Toronto Meetups</div>
+      <div class="activity-meta">
+        <span>📍 Toronto, Canada</span>
+        <span>👤 @Lightswarm</span>
+        <span>🔁 Regular</span>
+      </div>
+      <div class="activity-desc">Bitcoin Cash community gatherings in Toronto organized by Jerry Lightswarm. Connecting local BCH users, sharing ecosystem updates, and growing peer-to-peer cash adoption in Canada.</div>
+      <a class="activity-link" href="https://x.com/Lightswarm" target="_blank">↗ Follow for dates</a>
+    </div>
+
+    <div class="activity-card">
+      <div class="activity-header">
+        <span class="activity-flag">🌍</span>
+        <span class="activity-type type-hackathon">Hackathon</span>
+      </div>
+      <div class="activity-title">BCH-1 Hackathons & Builder Grants</div>
+      <div class="activity-meta">
+        <span>📍 Global / Online</span>
+        <span>👤 @bch_1org</span>
+        <span>🔁 Ongoing</span>
+      </div>
+      <div class="activity-desc">BCH-1 Hackcelerator runs hackathons and provides grants to BCH ecosystem builders worldwide. The BCH Atlas tracks 333+ funded campaigns. Open to all developers building on Bitcoin Cash.</div>
+      <a class="activity-link" href="https://bch-1.org" target="_blank">↗ bch-1.org</a>
+    </div>
+
+    <div class="activity-card">
+      <div class="activity-header">
+        <span class="activity-flag">🇳🇬</span>
+        <span class="activity-type type-education">Education</span>
+      </div>
+      <div class="activity-title">BCH Nigeria — Education & Meetups</div>
+      <div class="activity-meta">
+        <span>📍 Nigeria</span>
+        <span>👤 @Nurain_Dev</span>
+        <span>🔁 Ongoing</span>
+      </div>
+      <div class="activity-desc">Educational workshops and community meetups introducing Bitcoin Cash to Nigerians. Focus on financial inclusion, peer-to-peer payments, and BCH as a tool for economic freedom in West Africa.</div>
+      <a class="activity-link" href="https://x.com/Nurain_Dev" target="_blank">↗ Follow for updates</a>
+    </div>
+
+    <div class="activity-card">
+      <div class="activity-header">
+        <span class="activity-flag">🌍</span>
+        <span class="activity-type type-merchant">Merchant</span>
+      </div>
+      <div class="activity-title">BCH Merchant Map — Global Expansion</div>
+      <div class="activity-meta">
+        <span>📍 Worldwide</span>
+        <span>👤 BCH Argentina + Paytaca</span>
+        <span>🔁 Ongoing</span>
+      </div>
+      <div class="activity-desc">BCH Argentina and Paytaca are collaborating on an open-source, multilingual international BCH merchant map. Community leaders worldwide can manage their own local merchant listings — keeping the map clean and current.</div>
+      <a class="activity-link" href="https://map.paytaca.com" target="_blank">↗ Paytaca Merchant Map</a>
+    </div>
+
+  </div>
+</div>
+  <div style="margin-bottom:0.75rem;">
+    <div class="conv-label">🧑‍💻 Developers & Protocol</div>
+  </div>
+  <div class="x-grid" style="margin-bottom:1.5rem;">
+    <a class="x-card" href="https://x.com/bitjson" target="_blank">
+      <div class="x-avatar">⚙️</div>
+      <div class="x-info">
+        <div class="x-handle">@bitjson</div>
+        <div class="x-desc">CashTokens, CashScript, Bitauth IDE</div>
+      </div>
+      <span class="x-badge x-badge-dev">Dev</span>
+    </a>
+    <a class="x-card" href="https://x.com/GeneralProtocols" target="_blank">
+      <div class="x-avatar">🏛️</div>
+      <div class="x-info">
+        <div class="x-handle">@GeneralProtocols</div>
+        <div class="x-desc">AnyHedge, BCH Bull, DeFi research</div>
+      </div>
+      <span class="x-badge x-badge-dev">Dev</span>
+    </a>
+    <a class="x-card" href="https://x.com/mainnet_pat" target="_blank">
+      <div class="x-avatar">🔧</div>
+      <div class="x-info">
+        <div class="x-handle">@mainnet_pat</div>
+        <div class="x-desc">Mainnet.cash, BCH tooling</div>
+      </div>
+      <span class="x-badge x-badge-dev">Dev</span>
+    </a>
+    <a class="x-card" href="https://x.com/monsterbitar" target="_blank">
+      <div class="x-avatar">🦾</div>
+      <div class="x-info">
+        <div class="x-handle">@monsterbitar</div>
+        <div class="x-desc">Electron Cash contributor & BCH core dev</div>
+      </div>
+      <span class="x-badge x-badge-dev">Dev</span>
+    </a>
+    <a class="x-card" href="https://x.com/EmergentReasons" target="_blank">
+      <div class="x-avatar">🌱</div>
+      <div class="x-info">
+        <div class="x-handle">@EmergentReasons</div>
+        <div class="x-desc">BCH ecosystem developer & funding contributor</div>
+      </div>
+      <span class="x-badge x-badge-dev">Dev</span>
+    </a>
+    <a class="x-card" href="https://x.com/cculianu" target="_blank">
+      <div class="x-avatar">⚡</div>
+      <div class="x-info">
+        <div class="x-handle">@cculianu</div>
+        <div class="x-desc">Calin Culianu · Fulcrum SPV server · Electron Cash · 25k posts</div>
+      </div>
+      <span class="x-badge x-badge-dev">Dev</span>
+    </a>
+    <a class="x-card" href="https://x.com/CauldronDEX" target="_blank">
+      <div class="x-avatar">🧪</div>
+      <div class="x-info">
+        <div class="x-handle">@CauldronDEX</div>
+        <div class="x-desc">Cauldron AMM DEX on BCH</div>
+      </div>
+      <span class="x-badge x-badge-project">Project</span>
+    </a>
+    <a class="x-card" href="https://x.com/Paytaca" target="_blank">
+      <div class="x-avatar">📱</div>
+      <div class="x-info">
+        <div class="x-handle">@Paytaca</div>
+        <div class="x-desc">Paytaca wallet, POS, WalletConnect</div>
+      </div>
+      <span class="x-badge x-badge-project">Project</span>
+    </a>
+    <a class="x-card" href="https://x.com/bch_1org" target="_blank">
+      <div class="x-avatar">🚀</div>
+      <div class="x-info">
+        <div class="x-handle">@bch_1org</div>
+        <div class="x-desc">BCH-1 Hackcelerator & Atlas</div>
+      </div>
+      <span class="x-badge x-badge-project">Project</span>
+    </a>
+  </div>
+
+  <div style="margin-bottom:0.75rem;">
+    <div class="conv-label">📣 News, Content & Evangelists</div>
+  </div>
+  <div class="x-grid" style="margin-bottom:1.5rem;">
+    <a class="x-card" href="https://x.com/TheBCHPodcast" target="_blank">
+      <div class="x-avatar">🎙️</div>
+      <div class="x-info">
+        <div class="x-handle">@TheBCHPodcast</div>
+        <div class="x-desc">Weekly BCH podcast, BCH Bullet newsletter, bank runs</div>
+      </div>
+      <span class="x-badge x-badge-news">Media</span>
+    </a>
+    <a class="x-card" href="https://x.com/BitcoinCashOG" target="_blank">
+      <div class="x-avatar">🦁</div>
+      <div class="x-info">
+        <div class="x-handle">@BitcoinCashOG</div>
+        <div class="x-desc">400k+ impressions, BCH marketing on X</div>
+      </div>
+      <span class="x-badge x-badge-community">Community</span>
+    </a>
+    <a class="x-card" href="https://x.com/elBitcoin" target="_blank">
+      <div class="x-avatar">📰</div>
+      <div class="x-info">
+        <div class="x-handle">@elBitcoin</div>
+        <div class="x-desc">Spanish BCH media · elbitcoin.org editorial account</div>
+      </div>
+      <span class="x-badge x-badge-news">Media 🇪🇸</span>
+    </a>
+    <a class="x-card" href="https://x.com/bchautist" target="_blank">
+      <div class="x-avatar">📊</div>
+      <div class="x-info">
+        <div class="x-handle">@bchautist</div>
+        <div class="x-desc">On-chain analysis, BCH metrics research</div>
+      </div>
+      <span class="x-badge x-badge-news">Analysis</span>
+    </a>
+  </div>
+
+  <div style="margin-bottom:0.75rem;">
+    <div class="conv-label">🌍 Community, Meetups & Educators</div>
+  </div>
+  <div class="x-grid">
+    <a class="x-card" href="https://x.com/alberdioni8406_" target="_blank">
+      <div class="x-avatar">✍️</div>
+      <div class="x-info">
+        <div class="x-handle">@alberdioni8406_</div>
+        <div class="x-desc">120+ BCH articles in 2025 · 185k+ views on Read.cash</div>
+      </div>
+      <span class="x-badge x-badge-news">Writer</span>
+    </a>
+    <a class="x-card" href="https://x.com/Nurain_Dev" target="_blank">
+      <div class="x-avatar">🇳🇬</div>
+      <div class="x-info">
+        <div class="x-handle">@Nurain_Dev</div>
+        <div class="x-desc">BCH evangelist & educator in Nigeria</div>
+      </div>
+      <span class="x-badge x-badge-community">Community</span>
+    </a>
+    <a class="x-card" href="https://x.com/Lightswarm" target="_blank">
+      <div class="x-avatar">⚡</div>
+      <div class="x-info">
+        <div class="x-handle">@Lightswarm — Jerry</div>
+        <div class="x-desc">BCH community builder & advocate</div>
+      </div>
+      <span class="x-badge x-badge-community">Community</span>
+    </a>
+    <a class="x-card" href="https://x.com/twbitcoincash" target="_blank">
+      <div class="x-avatar">🇹🇼</div>
+      <div class="x-info">
+        <div class="x-handle">@twbitcoincash — Gordon Lin</div>
+        <div class="x-desc">BCH advocate & community leader in Taiwan</div>
+      </div>
+      <span class="x-badge x-badge-community">Community</span>
+    </a>
+    <a class="x-card" href="https://x.com/SteveThurmond" target="_blank">
+      <div class="x-avatar">🎯</div>
+      <div class="x-info">
+        <div class="x-handle">@SteveThurmond</div>
+        <div class="x-desc">BCH advocate, educator & community voice</div>
+      </div>
+      <span class="x-badge x-badge-community">Community</span>
+    </a>
+    <a class="x-card" href="https://x.com/00tatts" target="_blank">
+      <div class="x-avatar">🎨</div>
+      <div class="x-info">
+        <div class="x-handle">@00tatts</div>
+        <div class="x-desc">BCH tattoos · Las Vegas Crypto Club · onboarding through culture</div>
+      </div>
+      <span class="x-badge x-badge-community">IRL</span>
+    </a>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- DONATION SECTION -->
+<div class="donation-section" id="donate">
+  <div class="donation-inner">
+    <h2>💚 Support This Hub</h2>
+    <p>This resource is maintained entirely by the community. If CashCompass has helped you navigate the ecosystem, consider sending a small donation to help cover hosting, updates, and continued curation. Every satoshi counts!</p>
+
+    <div class="donation-addr" onclick="copyAddr()" title="Click to copy · Opens wallet on mobile">
+      <a href="bitcoincash:qrtv37u522gz8a5lezfqk5vukly93cu7gc8tn09040" style="color:inherit;text-decoration:none;flex:1;" id="donation-addr-text">bitcoincash:qrtv37u522gz8a5lezfqk5vukly93cu7gc8tn09040</a>
+      <span class="copy-icon">📋</span>
+    </div>
+    <div class="copied-toast" id="copied-toast">✔ Address copied to clipboard!</div>
+
+    <div id="donation-qr"></div>
+
+    <p style="font-size:0.78rem;margin-top:1rem;">Scan the QR code above or click the address to copy. Thank you for your support! 🙏</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-links">
+    <a href="https://bitcoincash.org" target="_blank">BitcoinCash.org</a>
+    <a href="https://minisatoshi.cash" target="_blank">MiniSatoshi.cash</a>
+    <a href="https://discover.cash" target="_blank">Discover.Cash</a>
+    <a href="https://awesomebitcoin.cash" target="_blank">AwesomeBitcoin.cash</a>
+    <a href="https://electroncash.org" target="_blank">ElectronCash.org</a>
+    <a href="https://cauldron.quest" target="_blank">Cauldron DEX</a>
+  </div>
+  <p>
+    CashCompass is a community-curated resource hub. All links go to official project websites.<br>
+    Not financial advice. Always DYOR. Built with ❤️ for the Bitcoin Cash community.<br>
+    Donate BCH: <a href="bitcoincash:qrtv37u522gz8a5lezfqk5vukly93cu7gc8tn09040">bitcoincash:qrtv37u522gz8a5lezfqk5vukly93cu7gc8tn09040</a>
+  </p>
+</footer>
+
+
+<script>
+// ─── ADDRESS CONVERTER ───
+// Simple Base58Check ↔ CashAddr conversion using the official cashaddr.js approach
+// We implement a lightweight pure-JS CashAddr codec here
+
+const CHARSET = 'qpzry9x8gf2tvdw0s3jn54khce6mua7l';
+const CHARSET_REV = new Uint8Array(128).fill(255);
+for (let i = 0; i < CHARSET.length; i++) CHARSET_REV[CHARSET.charCodeAt(i)] = i;
+
+const BASE58_CHARS = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz';
+const BASE58_MAP = {};
+for (let i = 0; i < BASE58_CHARS.length; i++) BASE58_MAP[BASE58_CHARS[i]] = i;
+
+function b58decode(str) {
+  let n = BigInt(0);
+  for (const c of str) {
+    if (!(c in BASE58_MAP)) throw new Error('Invalid base58');
+    n = n * 58n + BigInt(BASE58_MAP[c]);
+  }
+  const bytes = [];
+  while (n > 0n) { bytes.unshift(Number(n & 0xffn)); n >>= 8n; }
+  const leadingZeros = [...str].findIndex(c => c !== '1');
+  return new Uint8Array([...new Array(leadingZeros === -1 ? str.length : leadingZeros).fill(0), ...bytes]);
+}
+
+function b58encode(bytes) {
+  let n = BigInt(0);
+  for (const b of bytes) n = n * 256n + BigInt(b);
+  let str = '';
+  while (n > 0n) { str = BASE58_CHARS[Number(n % 58n)] + str; n = n / 58n; }
+  const leadingZeros = bytes.findIndex(b => b !== 0);
+  return '1'.repeat(leadingZeros === -1 ? bytes.length : leadingZeros) + str;
+}
+
+function toWords(bytes) {
+  let acc = 0, bits = 0;
+  const result = [];
+  for (const v of bytes) {
+    acc = (acc << 8) | v;
+    bits += 8;
+    while (bits >= 5) {
+      bits -= 5;
+      result.push((acc >> bits) & 0x1f);
+    }
+  }
+  if (bits > 0) result.push((acc << (5 - bits)) & 0x1f);
+  return result;
+}
+
+function fromWords(words) {
+  let acc = 0, bits = 0;
+  const result = [];
+  for (const v of words) {
+    acc = (acc << 5) | v;
+    bits += 5;
+    while (bits >= 8) {
+      bits -= 8;
+      result.push((acc >> bits) & 0xff);
+    }
+  }
+  return new Uint8Array(result);
+}
+
+function polymod(v) {
+  const c = [0x98f2bc8e61n, 0x79b76d99e2n, 0xf33e5fb3c4n, 0xae2eabe2a8n, 0x1e4f43e470n];
+  let checksum = 1n;
+  for (const d of v) {
+    const high = checksum >> 35n;
+    checksum = ((checksum & 0x07ffffffffn) << 5n) ^ BigInt(d);
+    for (let i = 0; i < 5; i++) {
+      if ((high >> BigInt(i)) & 1n) checksum ^= c[i];
+    }
+  }
+  return checksum ^ 1n;
+}
+
+function cashAddrPolymod(prefix, data) {
+  const prefixData = [...prefix].map(c => c.charCodeAt(0) & 0x1f);
+  return polymod([...prefixData, 0, ...data]);
+}
+
+function encodeCashAddr(prefix, type, hash) {
+  const versionByte = type === 0 ? 0 : 8; // P2PKH or P2SH
+  const payload = toWords(new Uint8Array([versionByte, ...hash]));
+  const chk = cashAddrPolymod(prefix, [...payload, 0, 0, 0, 0, 0, 0, 0, 0]);
+  const checksum = [];
+  for (let i = 7; i >= 0; i--) checksum.push(Number((chk >> BigInt(i * 5)) & 0x1fn));
+  return prefix + ':' + [...payload, ...checksum].map(d => CHARSET[d]).join('');
+}
+
+function decodeCashAddr(addr) {
+  let prefix, data;
+  if (addr.includes(':')) {
+    [prefix, data] = addr.split(':');
+  } else {
+    prefix = 'bitcoincash';
+    data = addr;
+  }
+  prefix = prefix.toLowerCase();
+  data = data.toLowerCase();
+  const values = [...data].map(c => CHARSET_REV[c.charCodeAt(0)]);
+  if (values.includes(255)) throw new Error('Invalid cashaddr character');
+  const payload = values.slice(0, -8);
+  const bytes = fromWords(payload);
+  const versionByte = bytes[0];
+  const hash = bytes.slice(1);
+  const type = (versionByte >> 3) & 0x1f;
+  return { prefix, type: type === 0 ? 0 : 1, hash };
+}
+
+function legacyToHash160(addr) {
+  const raw = b58decode(addr);
+  // raw = [version(1), hash160(20), checksum(4)]
+  if (raw.length !== 25) throw new Error('Invalid legacy address length');
+  const version = raw[0];
+  const hash = raw.slice(1, 21);
+  return { version, hash };
+}
+
+function hash160ToLegacy(hash, version) {
+  const payload = new Uint8Array([version, ...hash]);
+  // double sha256 checksum (we'll use a simple approach)
+  // Since we can't do real SHA256 in simple JS without libraries, we link to external converters
+  // Instead, we'll do a proper implementation with a fallback message
+  return null; // handled below
+}
+
+function convertAddress() {
+  const input = document.getElementById('conv-input').value.trim();
+  const cashEl = document.getElementById('conv-cashaddr');
+  const legacyEl = document.getElementById('conv-legacy');
+  cashEl.style.display = 'block';
+  legacyEl.style.display = 'block';
+  cashEl.className = 'conv-result';
+  legacyEl.className = 'conv-result';
+
+  if (!input) {
+    cashEl.textContent = 'Please enter an address.';
+    cashEl.classList.add('conv-error');
+    legacyEl.textContent = '';
+    return;
+  }
+
+  // Detect format
+  const isLegacy = /^[13][a-zA-Z0-9]{24,33}$/.test(input);
+  const isCashAddr = /^(bitcoincash:)?[qp][a-z0-9]{41,}$/i.test(input);
+
+  if (!isLegacy && !isCashAddr) {
+    cashEl.textContent = 'Unrecognized address format. Try a legacy (1xxx or 3xxx) or CashAddr (bitcoincash:q...) address.';
+    cashEl.classList.add('conv-error');
+    legacyEl.textContent = '';
+    return;
+  }
+
+  if (isCashAddr) {
+    // Normalize: add prefix if missing
+    const normalized = input.toLowerCase().startsWith('bitcoincash:') ? input : 'bitcoincash:' + input;
+    cashEl.textContent = normalized.toLowerCase();
+    legacyEl.textContent = '⚠️ Legacy conversion requires SHA-256. Use the official tools below.';
+    legacyEl.classList.add('conv-error');
+  } else {
+    // Legacy to CashAddr
+    try {
+      const { version, hash } = legacyToHash160(input);
+      const type = version === 0 ? 0 : 1; // P2PKH or P2SH
+      const cashAddr = encodeCashAddr('bitcoincash', type, Array.from(hash));
+      cashEl.textContent = cashAddr;
+      legacyEl.textContent = input;
+    } catch (e) {
+      cashEl.textContent = 'Error: ' + e.message;
+      cashEl.classList.add('conv-error');
+      legacyEl.textContent = '';
+    }
+  }
+}
+
+// ─── QR CODE GENERATOR ───
+let qrInstance = null;
+
+function generateQR() {
+  const addr = document.getElementById('qr-input').value.trim();
+  const amount = document.getElementById('qr-amount').value.trim();
+  const output = document.getElementById('qr-output');
+  const dlBtn = document.getElementById('qr-dl');
+
+  if (!addr) {
+    output.innerHTML = '<p style="color:var(--bch-red);font-size:0.82rem;">Please enter a BCH address.</p>';
+    dlBtn.style.display = 'none';
+    return;
+  }
+
+  let uri = addr;
+  if (!addr.startsWith('bitcoincash:') && !addr.startsWith('bitcoin:')) {
+    uri = 'bitcoincash:' + addr;
+  }
+  if (amount && parseFloat(amount) > 0) {
+    uri += '?amount=' + parseFloat(amount).toFixed(8);
+  }
+
+  output.innerHTML = '';
+  const div = document.createElement('div');
+  output.appendChild(div);
+
+  try {
+    new QRCode(div, {
+      text: uri,
+      width: 200,
+      height: 200,
+      colorDark: '#000000',
+      colorLight: '#ffffff',
+      correctLevel: QRCode.CorrectLevel.M
+    });
+    dlBtn.style.display = 'block';
+  } catch(e) {
+    output.innerHTML = '<p style="color:var(--bch-red);font-size:0.82rem;">Error generating QR: ' + e.message + '</p>';
+    dlBtn.style.display = 'none';
+  }
+}
+
+function downloadQR() {
+  const canvas = document.querySelector('#qr-output canvas');
+  if (!canvas) return;
+  const link = document.createElement('a');
+  link.download = 'bch-qr-code.png';
+  link.href = canvas.toDataURL('image/png');
+  link.click();
+}
+
+// ─── DONATION QR ───
+window.addEventListener('DOMContentLoaded', () => {
+  const donationAddr = 'bitcoincash:qrtv37u522gz8a5lezfqk5vukly93cu7gc8tn09040';
+  const div = document.createElement('div');
+  document.getElementById('donation-qr').appendChild(div);
+  new QRCode(div, {
+    text: donationAddr,
+    width: 180,
+    height: 180,
+    colorDark: '#000000',
+    colorLight: '#ffffff',
+    correctLevel: QRCode.CorrectLevel.M
+  });
+});
+
+// ─── COPY ADDRESS ───
+function copyAddr() {
+  const addr = document.getElementById('donation-addr-text').textContent;
+  navigator.clipboard.writeText(addr).then(() => {
+    const toast = document.getElementById('copied-toast');
+    toast.style.display = 'block';
+    setTimeout(() => toast.style.display = 'none', 2500);
+  });
+}
+
+// ─── KEYBOARD SHORTCUT FOR CONVERTER ───
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' && document.activeElement.id === 'conv-input') convertAddress();
+  if (e.key === 'Enter' && (document.activeElement.id === 'qr-input' || document.activeElement.id === 'qr-amount')) generateQR();
+});
+
+// ─── FEATURED COUNTDOWN TIMER ───
+function updateFeaturedCountdown() {
+  const el = document.getElementById('featured-countdown');
+  if (!el) return;
+  // Feature runs for 7 days from June 2, 2026
+  const endDate = new Date('2026-06-09T23:59:59Z');
+  const now = new Date();
+  const diff = endDate - now;
+  if (diff <= 0) {
+    el.textContent = 'Featuring ended';
+    return;
+  }
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  const secs = Math.floor((diff % (1000 * 60)) / 1000);
+  el.textContent = `⏳ ${days}d ${hours}h ${mins}m ${secs}s left`;
+}
+updateFeaturedCountdown();
+setInterval(updateFeaturedCountdown, 1000);
+</script>
+
+</body>
+</html>
