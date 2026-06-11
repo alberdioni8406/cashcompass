@@ -4,7 +4,7 @@
 
 ## Live Website
 
-https://cashcompass.space
+https://cashcompass-bch.vercel.app
 
 ## About
 
@@ -37,7 +37,7 @@ Open an issue or contact us with suggestions.
 
 ## Community
 
-Website: https://cashcompass.space
+Website: https://cashcompass-bch.vercel.app
 
 X: https://x.com/alberdioni8406_
 
