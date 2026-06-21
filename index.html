@@ -1344,31 +1344,35 @@
     <div class="featured-left">
       <div class="featured-badges">
         <span class="featured-badge-star">⭐ This Week's Pick</span>
-        <span class="featured-badge-cat">🎟️ Onboarding · Paper Wallets</span>
-        <span class="badge badge-new">BCH Adoption Tool</span>
+        <span class="featured-badge-cat">💻 Desktop · Mobile · Privacy</span>
+        <span class="badge badge-new">Since 2017</span>
       </div>
-      <div class="featured-title">Cash<span>Stamps</span></div>
+      <div class="featured-title">Electron<span>Cash</span></div>
       <div class="featured-tagline">
-        <strong>Giftable Bitcoin Cash wallets you can print and hand out — with reclaimable funds if unused.</strong>
-        CashStamps lets you create batches of BCH-loaded QR code wallets ready for gifting,
-        merchant promotions, community events, and real-world onboarding.
-        Load a stamp with any BCH amount, print on A4, Letter, or Avery label templates,
-        and let anyone scan and claim instantly with any BCH wallet.
-        <strong>Unclaimed stamps? Reclaim the balance anytime</strong> — your funds are never lost.
-        All keys stored locally in your browser. No custodian. No signup. 100% open source.
+        <strong>The gold-standard Bitcoin Cash wallet — powerful, private, and battle-tested since 2017.</strong>
+        Electron Cash is a lightweight SPV wallet that verifies your own transactions locally
+        without downloading the full blockchain. Your <strong>private keys never leave your device</strong> —
+        all signing happens locally while a distributed server network handles the heavy lifting.
+        It ships with <strong>CashFusion</strong> for trustless on-chain privacy, <strong>Reusable Payment Addresses (RPA)</strong>
+        for stealth receiving, full <strong>CashTokens</strong> support including NFT minting,
+        hardware wallet integration (Ledger Nano S), multisig, coin control, and a powerful plugin system.
+        Updated in 2026 for the Layla/CashVM upgrade. Free, open source, MIT licensed.
       </div>
       <div class="featured-tags">
-        <span class="tag green">Reclaimable Wallets</span>
-        <span class="tag green">Print & Gift BCH</span>
-        <span class="tag green">Open Source</span>
-        <span class="tag">Non-Custodial</span>
-        <span class="tag">No Signup</span>
-        <span class="tag">Multi-Currency Display</span>
-        <span class="tag">A4 · Letter · Avery Labels</span>
+        <span class="tag green">CashTokens & NFTs</span>
+        <span class="tag green">CashFusion Privacy</span>
+        <span class="tag green">Reusable Addresses (RPA)</span>
+        <span class="tag green">SPV Verification</span>
+        <span class="tag">Multisig</span>
+        <span class="tag">Coin Control</span>
+        <span class="tag">Ledger Support</span>
+        <span class="tag">Plugin System</span>
+        <span class="tag">Windows · macOS · Linux · Android</span>
+        <span class="tag">Open Source · MIT</span>
       </div>
       <div class="featured-actions">
-        <a class="featured-cta" href="https://stamps.cash" target="_blank" rel="noopener">
-          🎟️ Create CashStamps ↗
+        <a class="featured-cta" href="https://electroncash.org" target="_blank" rel="noopener">
+          💻 Download Electron Cash ↗
         </a>
         <a class="featured-secondary" href="#donate" onclick="document.getElementById('donate').scrollIntoView({behavior:'smooth'});return false;">
           💚 Tip CashCompass in BCH
@@ -1376,12 +1380,12 @@
       </div>
     </div>
     <div class="featured-right">
-      <div class="featured-logo-ring">🎟️</div>
-      <div class="featured-sponsor-note">Featured · Week 2</div>
+      <div class="featured-logo-ring">💻</div>
+      <div class="featured-sponsor-note">Featured · Week 3</div>
     </div>
   </div>
 </div>
-
+  
 <hr class="divider">
 
 <!-- LEARN / START HERE BOX -->
@@ -3464,7 +3468,7 @@ function updateFeaturedCountdown() {
   const el = document.getElementById('featured-countdown');
   if (!el) return;
   // Feature runs for 7 days from June 2, 2026
-  const endDate = new Date('2026-06-18T23:59:59Z');
+  const endDate = new Date('2026-06-25T23:59:59Z');
   const now = new Date();
   const diff = endDate - now;
   if (diff <= 0) {
